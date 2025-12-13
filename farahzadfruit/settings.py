@@ -176,6 +176,6 @@ CKEDITOR_5_CONFIGS = {
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "assets",
+    BASE_DIR / "static",
 
 ]
