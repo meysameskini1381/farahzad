@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'slugify',
     'products_app.apps.ProductsAppConfig',
+    'accounts_app.apps.AccountsAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'farahzadfruit.wsgi.application'
 
+AUTH_USER_MODEL = "accounts_app.User"
+
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -79,7 +82,7 @@ WSGI_APPLICATION = 'farahzadfruit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'meysameskini',
+        'NAME': 'farahzad',
         'USER': 'postgres',
         'PASSWORD': 'meysam@@138100',
         'HOST': 'localhost',
