@@ -2,234 +2,376 @@
 {% block titel %}   {% endblock %}
 
 {% block descripsion %}   {% endblock %}
+
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>فروشگاه اینترنتی</title>
-    <link rel="stylesheet" href="{% static 'assets/vendor/fontawesome/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/swiper/css/swiper.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/slicknav/slicknav.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/mediaq.css' %}">
-</head>
+<html lang="en" dir="rtl">
+    <head>
+        <!--=====================================
+                    META TAG PART START
+        =======================================-->
+        <!-- REQUIRE META -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <header>
-    <section class="top-head container">
-        <div class="right-head">
-            <div class="logo">
-                <a href="index.html"><img src="{% static 'assets/images/logo.svg' %}" ></a>
-            </div>
-            <form action="#">
-                <button><i class="fa fa-search"></i></button>
-                <input type="text" placeholder="جستجو در دیجی شاپ ...">
-            </form>
+        <!-- AUTHOR META -->
+        <meta name="author" content="mironcoder">
+        <meta name="email" content="mironcoder@gmail.com">
+        <meta name="profile" content="https://themeforest.net/user/mironcoder">
+
+        <!-- TEMPLATE META -->
+        <meta name="name" content="Greeny">
+        <meta name="title" content="Greeny - eCommerce HTML Template">
+        <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
+        <!--=====================================
+                    META-TAG PART END
+        =======================================-->
+
+        <!-- WEBPAGE TITLE -->
+        <title>Standard Home - Greeny</title>
+
+        <!--=====================================
+                    CSS LINK PART START
+        =======================================-->
+        <!-- FAVICON -->
+        <link rel="icon" href="{% static 'images/favicon.png' %}">
+
+        <!-- FONTS -->
+        <link rel="stylesheet" href="{% static 'fonts/flaticon/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/icofont/icofont.min.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/fontawesome/fontawesome.min.css' %}">
+
+        <!-- VENDOR -->
+        <link rel="stylesheet" href="{% static 'vendor/venobox/venobox.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/slickslider/slick.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/niceselect/nice-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+
+        <!-- CUSTOM -->
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home-standard.css' %}">
+        <!--=====================================
+                    CSS LINK PART END
+        =======================================-->
+    </head>
+    <body>
+        <div class="backdrop"></div>
+        <a class="backtop fas fa-arrow-up" href="#"></a>
+
+        <div class="header-top alert fade show">
+            <p>20% تخفیف برای اعضای جدید <a href="register.html">همین حالا عضو شوید!</a></p>
+            <button data-bs-dismiss="alert"><i class="fas fa-times"></i></button>
         </div>
-        <div class="left-head">
-            <div class="login-box">
-                <div class="log-reg" id="logreg">
-                    <i class="fa fa-user"></i>
-                    <a href="login.html"> ورود به حساب کاربری </a>
 
-                    <!--<div class="user-modal">
-                        <a class="login" href="#">ورود به دیجی کالا</a>
-                        <div class="newuser">
-                            <span>کاربر جدید هستید؟</span>
-                            <a href="#">ثبت نام</a>
-                        </div>
-                        <a class="profile" href="#"><i class="fa fa-user"></i> پروفایل</a>
-                        <a class="order" href="#"><i class="fa fa-folder"></i> پیگیری سفارش</a>
-                    </div>-->
+
+        <!--=====================================
+                    HEADER PART START
+        =======================================-->
+        <header class="header-part">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-media-group">
+                        <button class="header-user"><img src="{% static 'images/user.png' %}" alt="user"></button>
+                        <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                        <button class="header-src"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <a href="index.html" class="header-logo">
+                        <img src="{% static 'images/logo.png' %}" alt="logo">
+                    </a>
+                    <a href="login.html" class="header-widget" title="My Account">
+                        <img src="{% static 'images/user.png' %}" alt="user">
+                        <span>ورود</span>
+                    </a>
+
+                    <form class="header-form">
+                        <input type="text" placeholder="جست و جو کن ...">
+                        <button><i class="fas fa-search"></i></button>
+                    </form>
+
+                    <div class="header-widget-group">
+                        <a href="compare.html" class="header-widget" title="Compare List">
+                            <i class="fas fa-random"></i>
+                            <sup>0</sup>
+                        </a>
+                        <a href="wishlist.html" class="header-widget" title="Wishlist">
+                            <i class="fas fa-heart"></i>
+                            <sup>0</sup>
+                        </a>
+                        <button class="header-widget header-cart" title="Cartlist">
+                            <i class="fas fa-shopping-basket"></i>
+                            <sup>9+</sup>
+                            <span>قیمت کل<small>345000 ريال</small></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="devider"></div>
-
-            <a href="cart.html" class="cart">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
-        </div>
+        </header>
+        <!--=====================================
+                    HEADER PART END
+        =======================================-->
 
 
-    </section>
-
-    <nav class="top-nav container">
-        <ul class="dropdown" id="mynavmenu">
-            <li class="main-category"><i class="fa fa-bars"></i><a href="#">دسته بندی کالاها</a>
-                <ul class="dropdown2">
-                    <li><a href="#">کالای دیجیتال</a>
-                        <ul class="megamenu">
-                            <li><a href="#">موبایل</a>
-                                <ul>
-                                    <li><a href="#">مدل موبایل</a></li>
-                                    <li><a href="#">کیف و کاور</a></li>
-                                    <li><a href="#">پاور بانک</a></li>
-                                    <li><a href="#">پایه نگهدارنده</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">کامپیوتر</a>
-                                <ul>
-                                    <li><a href="#">ماوس</a></li>
-                                    <li><a href="#">کیبورد</a></li>
-                                    <li><a href="#">مانیتور</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">تجهیزات اداری</a>
-                                <ul>
-                                    <li><a href="#">کالای اول</a></li>
-                                    <li><a href="#">کالای دوم</a></li>
-                                    <li><a href="#">کالای سوم</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">تبلت</a>
-                                <ul>
-                                    <li><a href="#">لنوو</a></li>
-                                    <li><a href="#">سامسونگ</a></li>
-                                    <li><a href="#">ایسوس</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">دوربین</a>
-                                <ul>
-                                    <li><a href="#">کیف,کوله و کاور</a></li>
-                                    <li><a href="#">کابل ها رابط و مبدل</a></li>
-                                    <li><a href="#">کابل صدا و HDMI</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">لوازم جانبی لپ تاپ</a>
-                                <ul>
-                                    <li><a href="#">کیف,کوله و کاور</a></li>
-                                    <li><a href="#">کابل ها رابط و مبدل</a></li>
-                                    <li><a href="#">کابل صدا و HDMI</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="#">اسکوتر برقی</a>
-                                <ul>
-                                    <li><a href="#">کالای اول</a></li>
-                                    <li><a href="#">کالای دوم</a></li>
-                                    <li><a href="#">کالای سوم</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">ماشین های اداری</a>
-                                <ul>
-                                    <li><a href="#">لوازم جانبی پرینتر</a></li>
-                                    <li><a href="#">فکس</a></li>
-                                    <li><a href="#">تلقن و بیسیم</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">مچ بند و ساعت هوشمند</a>
-                                <ul>
-                                    <li><a href="#">لوازم جانبی پرینتر</a></li>
-                                    <li><a href="#">فکس</a></li>
-                                    <li><a href="#">تلقن و بیسیم</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">دوربین های تحت شبکه</a>
-                                <ul>
-                                    <li><a href="#">لوازم جانبی پرینتر</a></li>
-                                    <li><a href="#">فکس</a></li>
-                                    <li><a href="#">تلقن و بیسیم</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#">آرایشی و بهداشتی</a></li>
-                    <li><a href="#">مد و پوشاک</a></li>
-                    <li><a href="#">خانه و آشپزخانه</a></li>
-                    <li><a href="#">ورزش و سفر</a></li>
-                    <li><a href="#">کتاب,لوازم تحریر</a></li>
-                    <li><a href="#">سوپرمارکت</a></li>
-                </ul>
-            </li>
-            <li><a href="#">سوپرمارکت</a></li>
-            <li><a href="#">تخفیف ها و پیشنهادها</a></li>
-            <li><a href="#">دیجی شاپ من</a></li>
-            <li><a href="#">دیجی کلاب</a></li>
-            <li><a href="#">سوالی دارید؟</a></li>
-            <li><a href="#">فروشنده شوید</a></li>
-        </ul>
-        <ul class="promotion"><li><a href="#">لطفا شهر و استان خود را انتخاب کنید</a><i class="fa fa-map-marker"></i></li></ul>
-
-    </nav>
-
-</header>
-
+        <!--=====================================
+                    NAVBAR PART START
+        =======================================-->
+        <nav class="navbar-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="navbar-content">
+                            <ul class="navbar-list">
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link dropdown-arrow" href="#">خانه</a>
+                                    <ul class="dropdown-position-list">
+                                        <li><a href="home-grid.html">صفحه اصلی گرید</a></li>
+                                        <li><a href="index.html">صفحه اصلی</a></li>
+                                        <li><a href="home-classic.html">صفحه اصلی کلاسیک</a></li>
+                                        <li><a href="home-standard.html">صفحه اصلی استاندارد</a></li>
+                                        <li><a href="home-category.html">صفحه اصلی دسته بندی</a></li>
+                                    </ul>
+                                </li>
+                                <li class="navbar-item dropdown-megamenu">
+                                    <a class="navbar-link dropdown-arrow" href="#">فروشگاه</a>
+                                    <div class="megamenu">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="megamenu-wrap">
+                                                        <h5 class="megamenu-title">صفحات فروشگاه</h5>
+                                                        <ul class="megamenu-list">
+                                                            <li><a href="shop-5column.html">فروشگاه 5 ستون</a></li>
+                                                            <li><a href="shop-4column.html">فروشگاه 4 ستون</a></li>
+                                                            <li><a href="shop-3column.html">فروشگاه 3 ستون</a></li>
+                                                            <li><a href="shop-2column.html">فروشگاه 2 ستون</a></li>
+                                                            <li><a href="shop-1column.html">فروشگاه 1 ستون</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="megamenu-wrap">
+                                                        <h5 class="megamenu-title">صفحات محصول</h5>
+                                                        <ul class="megamenu-list">
+                                                            <li><a href="product-tab.html">محصول تک تب</a></li>
+                                                            <li><a href="product-grid.html">محصول تک ستون</a></li>
+                                                            <li><a href="product-video.html">محصول تک ویدیو</a></li>
+                                                            <li><a href="product-simple.html">معرفی محصول</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="megamenu-wrap">
+                                                        <h5 class="megamenu-title">اقدامات کاربر</h5>
+                                                        <ul class="megamenu-list">
+                                                            <li><a href="wishlist.html">لیست علاقه مندی ها</a></li>
+                                                            <li><a href="compare.html">مقایسه</a></li>
+                                                            <li><a href="checkout.html">تسویه حساب</a></li>
+                                                            <li><a href="orderlist.html">تاریخچه سفارش ها</a></li>
+                                                            <li><a href="invoice.html">فاکتور سفارش</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="megamenu-promo">
+                                                        <a href="#"><img src="{% static 'images/promo/shop/03.jpg' %}" alt="promo"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link dropdown-arrow" href="#">صفحات</a>
+                                    <ul class="dropdown-position-list">
+                                        <li><a href="faq.html">سوالات متداول</a></li>
+                                        <li><a href="offer.html">تخفیفات</a></li>
+                                        <li><a href="profile.html">پروفایل من</a></li>
+                                        <li><a href="wallet.html">کیف پول من</a></li>
+                                        <li><a href="about.html">درباره ما</a></li>
+                                        <li><a href="contact.html">ارتباط باما</a></li>
+                                        <li><a href="privacy.html">سیاست حفظ حریم خصوصی</a></li>
+                                        <li><a href="coming-soon.html">در دست ساخت</a></li>
+                                        <li><a href="blank-page.html">صفحه خالی</a></li>
+                                        <li><a href="error.html">خطای 404</a></li>
+                                        <li><a href="email-template.html">قالب ایمیل</a></li>
+                                    </ul>
+                                </li>
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link dropdown-arrow" href="#">احراز هویت</a>
+                                    <ul class="dropdown-position-list">
+                                        <li><a href="login.html">لاگین</a></li>
+                                        <li><a href="register.html">ثبت نام</a></li>
+                                        <li><a href="reset-password.html">حذف پسوورد</a></li>
+                                        <li><a href="change-password.html">تغییر پسوورد</a></li>
+                                    </ul>
+                                </li>
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link dropdown-arrow" href="#">بلاگ ها</a>
+                                    <ul class="dropdown-position-list">
+                                        <li><a href="blog-grid.html">بلاگ گریدبندی</a></li>
+                                        <li><a href="blog-standard.html">بلاگ استاندارد</a></li>
+                                        <li><a href="blog-details.html">اطلاعات بلاگ</a></li>
+                                        <li><a href="blog-author.html">نویسنده وبلاگ</a></li>
+                                    </ul>
+                                </li>
+                                <li class="navbar-item">
+                                    <a class="navbar-link" href="faq.html">راهنما</a>
+                                </li>
+                                <li class="navbar-item">
+                                    <a class="navbar-link" href="contact.html">ارتباط با ما</a>
+                                </li>
+                            </ul>
+                            <div class="navbar-select-group">
+                                <div class="navbar-select">
+                                    <i class="fas fa-flag"></i>
+                                    <select class="select">
+										<option value="persian" selected>فارسی</option>
+										<option value="english">انگلیسی</option>
+										<option value="arabic">عربی</option>
+                                    </select>
+                                </div>
+                                <div class="navbar-select">
+                                    <i class="fas fa-funnel-dollar"></i>
+                                    <select class="select">
+										  <option value="persian" selected>ریال</option>
+										<option value="english">دلار</option>
+										<option value="arabic">درهم</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
 {% block body %}
 
 {% endblock %}
 
 
+ <!--=====================================
+                    NEWSLETTER PART END
+        =======================================-->
 
 
-
-
- <footer>
-        <section class="footer container">
-            <div class="icon">
-                <div class="icon-item">
-                    <a href="#"> <img src="{% static 'assets/images/icon/1.svg' %}" alt=""> <span>7 روز ضمانت بازگشت</span> </a>
-                </div>
-                <div class="icon-item">
-                    <a href="#"> <img src="{% static 'assets/images/icon/2.svg' %}" alt=""> <span>پرداخت در محل</span> </a>
-                </div>
-                <div class="icon-item">
-                    <a href="#"> <img src="{% static 'assets/images/icon/4.svg' %}" alt=""> <span>تحویل اکسپرس</span> </a>
-                </div>
-                <div class="icon-item">
-                    <a href="#"> <img src="{% static 'assets/images/icon/3.svg' %}" alt=""> <span>پشتیبانی ۲۴ ساعته</span> </a>
-                </div>
-                <div class="icon-item">
-                    <a href="#"> <img src="{% static 'assets/images/icon/5.svg' %}" alt=""> <span>ضمانت اصل بودن کالا</span> </a>
-                </div>
-            </div>
-            <div class="footer-content">
-                <div class="shop-help">
-                    <h3 class="head">راهنمای خرید از شاپ</h3>
-                    <ul>
-                        <li><a href="#">نحوه ثبت سفارش</a></li>
-                        <li><a href="#">رویه ارسال سفارش</a></li>
-                        <li><a href="#">شیوه های پرداخت</a></li>
-                    </ul>
-                </div>
-                <div class="customer-service">
-                    <h3 class="head">خدمات مشتریان</h3>
-                    <ul>
-                        <li><a href="#">پاسخ به پرسش های متداول</a></li>
-                        <li><a href="#">رویه های بازگرداندن کالا</a></li>
-                        <li><a href="#">حریم خصوصی</a></li>
-                    </ul>
-                </div>
-                <div class="newsletter">
-                    <h3 class="head">از تخفیف ها و جدیدترین های شاپ با خبر باشید</h3>
-                    <div class="content">
-                        <form action="#">
-                            <input type="text">
-                            <button type="submit">ارسال</button>
-                        </form>
-                        <h3 class="head">ما را در شبکه های اجتماعی دنبال کنید</h3>
-                        <div class="social"> <a href=""><i class="fa fa-instagram"></i></a> <a href=""><i class="fa fa-twitter-square"></i></a> <a href=""><i class="fa fa-facebook-square"></i></a> <a href=""><i class="fa fa-google-plus-square"></i></a></div>
+        <!--=====================================
+                     FOOTER PART START
+        =======================================-->
+        <footer class="footer-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget">
+                            <a class="footer-logo" href="#">
+                                <img src="{% static 'images/logo.png' %}" alt="logo">
+                            </a>
+                            <p class="footer-desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
+                            <ul class="footer-social">
+                                <li><a class="icofont-facebook" href="#"></a></li>
+                                <li><a class="icofont-twitter" href="#"></a></li>
+                                <li><a class="icofont-linkedin" href="#"></a></li>
+                                <li><a class="icofont-instagram" href="#"></a></li>
+                                <li><a class="icofont-pinterest" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget contact">
+                            <h3 class="footer-title">راه های ارتباط</h3>
+                            <ul class="footer-contact">
+                                <li>
+                                    <i class="icofont-ui-email"></i>
+                                    <p>
+                                        <span>support@greeny.com</span>
+                                        <span>carrer@greeny.com</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <i class="icofont-ui-touch-phone"></i>
+                                    <p>
+                                        <span>+120 279 532 13</span>
+                                        <span>+120 279 532 14</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <i class="icofont-location-pin"></i>
+                                    <p>ایران جان ، تهران</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">دسترسی سریع</h3>
+                            <div class="footer-links">
+                                <ul>
+                                    <li><a href="#">اکانت من</a></li>
+                                    <li><a href="#">تاریخچه خرید</a></li>
+                                    <li><a href="#">رهگیری سفارش</a></li>
+                                    <li><a href="#">بهترین فروش</a></li>
+                                    <li><a href="#">جدید ترین محصولات</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">لوکیشن</a></li>
+                                    <li><a href="#">زیرمجموعه گیری</a></li>
+                                    <li><a href="#">اترابط با ما</a></li>
+                                    <li><a href="#">قوانین</a></li>
+                                    <li><a href="#">سوالات متداول</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">دانلود اپلیکیشن</h3>
+                            <p class="footer-desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است!</p>
+                            <div class="footer-app">
+                                <a href="#"><img src="{% static 'images/google-store.png' %}" alt="google"></a>
+                                <a href="#"><img src="{% static 'images/app-store.png' %}" alt="app"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="cert">
-                    <h3 class="head">مجوزهای فروشگاه</h3>
-                    <div class="image"> <img src="{% static 'assets/images/cert/enamad.png' %}" alt=""> <img src="{% static 'assets/images/cert/samandehi.png' %}" alt=""></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="footer-bottom">
+                            <p class="footer-copytext">&copy;  تمامی حقوق این سایت متعلق به <a target="_blank" href="#">Mrzic</a></p>
+                            <div class="footer-card">
+                                <a href="#"><img src="{% static 'images/payment/jpg/01.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/02.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/03.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/04.jpg' %}" alt="payment"></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-contact">
-                <div class="contact"> <span>هفت روز هفته, ۲۴ ساعت شبانه روز پاسخگوی شما هستیم,</span> <span>شماره تماس : ۰۴۴-۳۳۳۳</span> <span>آدرس ایمیل : info@site.com</span></div>
-                <div class="app"> <img src="{% static 'assets/images/bazar.png' %}" alt=""> <img src="{% static 'assets/images/sibapp.png' %}" alt=""></div>
-            </div>
-            <div class="copyright">
-                <p>استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت فلان (فروشگاه آنلاین دیجی‌کالا) می‌باشد.</p>
-            </div>
-        </section>
-    </footer>
-    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/swiper/js/swiper.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/slicknav/jquery.slicknav.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/jquery.countdown.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/persianumber.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/elevatezoom.js' %}"></script>
-    <script src="{% static 'assets/js/script.js' %}"></script>
+        </footer>
+        <!--=====================================
+                      FOOTER PART END
+        =======================================-->
 
+
+        <!--=====================================
+                    JS LINK PART START
+        =======================================-->
+        <!-- VENDOR -->
+        <script src="{% static 'vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/countdown/countdown.min.js' %}"></script>
+        <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
+        <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+
+        <!-- CUSTOM -->
+        <script src="{% static 'js/nice-select.js' %}"></script>
+        <script src="{% static 'js/countdown.js' %}"></script>
+        <script src="{% static 'js/accordion.js' %}"></script>
+        <script src="{% static 'js/venobox.js' %}"></script>
+        <script src="{% static 'js/slick.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <!--=====================================
+                    JS LINK PART END
+        =======================================-->
+    </body>
 </html>
