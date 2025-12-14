@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'farahzad.runflare.run',
+    '127.0.0.1',
+    'localhost',
 
 ]
 
@@ -90,7 +92,7 @@ DATABASES = {
         'NAME': 'farahzadrld_db',
         'USER': 'postgres',
         'PASSWORD': 'kJhC2m2ldXhJcT7AQnzd',
-        'HOST': 'localhost',
+        'HOST': 'remote.runflare.com',
         'PORT': '5432',
     }
 }
