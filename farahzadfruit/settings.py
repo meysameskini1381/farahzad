@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'farahzadrld_db',
         'USER': 'postgres',
         'PASSWORD': 'kJhC2m2ldXhJcT7AQnzd',
-        'HOST': 'remote.runflare.com',
+        'HOST': 'farahzadshop-zcd-service',
         'PORT': '5432',
     }
 }
