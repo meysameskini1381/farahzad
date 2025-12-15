@@ -89,9 +89,9 @@ AUTH_USER_MODEL = "accounts_app.User"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'farahzadrld_db',
+        'NAME': 'farahzadshop',
         'USER': 'postgres',
-        'PASSWORD': 'kJhC2m2ldXhJcT7AQnzd',
+        'PASSWORD':'kJhC2m2ldXhJcT7AQnzd',
         'HOST': 'farahzadshop-zcd-service',
         'PORT': '5432',
     }
