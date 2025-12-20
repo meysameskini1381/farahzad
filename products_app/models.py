@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 
+from django.conf import settings
+
+
 class Category(models.Model):
     title = models.CharField(
         max_length=200,
@@ -90,8 +93,6 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
-
-
 class Product(models.Model):
     category = models.ForeignKey(
         Category,
@@ -100,6 +101,8 @@ class Product(models.Model):
         verbose_name="دسته‌بندی",
         help_text="دسته‌بندی‌ای که این محصول در آن قرار دارد"
     )
+    vip = models.BooleanField(default=False,verbose_name='محصول vip',help_text='این بخش برای مشخص کردن محصولات vip میباشد ')
+    is_featured = models.BooleanField(default=False,verbose_name='محصول ویژه است ؟ ',help_text='اگر محصول شما ویژه است تیک بزنید ')
 
     title = models.CharField(
         max_length=250,
@@ -137,6 +140,7 @@ class Product(models.Model):
         verbose_name="قیمت",
         help_text="قیمت محصول به تومان"
     )
+    featured_priority = models.PositiveSmallIntegerField(default=0,verbose_name='امتیاز محول',max_length=5)
 
     discount_price = models.PositiveIntegerField(
         null=True,
@@ -185,6 +189,8 @@ class Product(models.Model):
         help_text="آخرین زمان بروزرسانی محصول"
     )
 
+
+
     class Meta:
         verbose_name = "محصول"
         verbose_name_plural = "محصولات"
@@ -193,7 +199,115 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+
+
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title, allow_unicode=True)
         super().save(*args, **kwargs)
+
+
+class ProductGallery(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="gallery",
+        verbose_name="محصول مرتبط",
+        help_text="این تصویر متعلق به کدام محصول است"
+    )
+
+    image = models.ImageField(
+        upload_to="products/gallery/",
+        verbose_name="تصویر محصول",
+        help_text="تصویر مربوط به گالری محصول"
+    )
+
+    is_main = models.BooleanField(
+        default=False,
+        verbose_name="تصویر اصلی",
+        help_text="اگر فعال باشد، این تصویر به عنوان تصویر اصلی محصول نمایش داده می‌شود"
+    )
+
+    ordering = models.PositiveSmallIntegerField(
+        default=0,
+        verbose_name="اولویت نمایش",
+        help_text="عدد کوچک‌تر → نمایش زودتر در گالری"
+    )
+
+    class Meta:
+        verbose_name = "تصویر گالری محصول"
+        verbose_name_plural = "گالری تصاویر محصولات"
+        ordering = ['ordering']
+
+    def __str__(self):
+        return f"گالری {self.product.title}"
+
+
+class ProductFeature(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="features",
+        verbose_name="محصول",
+        help_text="این ویژگی مربوط به کدام محصول است"
+    )
+
+    title = models.CharField(
+        max_length=100,
+        verbose_name="عنوان ویژگی",
+        help_text="مثلاً: رنگ، وزن، جنس، گارانتی"
+    )
+
+    value = models.CharField(
+        max_length=255,
+        verbose_name="مقدار ویژگی",
+        help_text="مثلاً: قرمز، ۱ کیلوگرم، پلاستیک"
+    )
+
+    ordering = models.PositiveSmallIntegerField(
+        default=0,
+        verbose_name="اولویت نمایش",
+        help_text="ترتیب نمایش ویژگی‌ها در صفحه محصول"
+    )
+
+    class Meta:
+        verbose_name = "ویژگی محصول"
+        verbose_name_plural = "ویژگی‌های محصولات"
+        ordering = ['ordering']
+
+    def __str__(self):
+        return f"{self.title} : {self.value}"
+
+
+
+class ProductComment(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='product_comments'
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(null=True,blank=True,max_length=255)
+    email = models.EmailField(null=True,blank=True,)
+    parent = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        related_name='replies',
+        on_delete=models.CASCADE
+    )
+
+    text = models.TextField()
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.text[:30]

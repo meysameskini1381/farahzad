@@ -49,6 +49,10 @@
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/home-standard.css' %}">
+        <link rel="stylesheet" href="{%  static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+        <link rel="stylesheet" href="{%  static 'css/product-grid.css' %}">
+        <!--=====================================
         <!--=====================================
                     CSS LINK PART END
         =======================================-->
@@ -99,8 +103,8 @@
                         </a>
                         <button class="header-widget header-cart" title="Cartlist">
                             <i class="fas fa-shopping-basket"></i>
-                            <sup>9+</sup>
-                            <span>قیمت کل<small>345000 ريال</small></span>
+                            <sup>1+</sup>
+                            <span>قیمت کل<small>0 ريال</small></span>
                         </button>
                     </div>
                 </div>
@@ -121,14 +125,7 @@
                         <div class="navbar-content">
                             <ul class="navbar-list">
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link dropdown-arrow" href="#">خانه</a>
-                                    <ul class="dropdown-position-list">
-                                        <li><a href="home-grid.html">صفحه اصلی گرید</a></li>
-                                        <li><a href="index.html">صفحه اصلی</a></li>
-                                        <li><a href="home-classic.html">صفحه اصلی کلاسیک</a></li>
-                                        <li><a href="home-standard.html">صفحه اصلی استاندارد</a></li>
-                                        <li><a href="home-category.html">صفحه اصلی دسته بندی</a></li>
-                                    </ul>
+                                    <a class="navbar-link dropdown-arrow" href="{% url 'home_app:home' %}">خانه</a>
                                 </li>
                                 <li class="navbar-item dropdown-megamenu">
                                     <a class="navbar-link dropdown-arrow" href="#">فروشگاه</a>

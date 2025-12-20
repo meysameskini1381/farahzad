@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2796a63e-25e9-4260-9d9d-79bc3fbc3213" name="Changes" comment="" />
+    <list default="true" id="2796a63e-25e9-4260-9d9d-79bc3fbc3213" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/products_app/api/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products_app/api/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products_app/api/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products_app/api/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/omment-product.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/product-detail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/shop-cart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/shop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/product_app/product-detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/product_app/product_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart_app/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart_app/api/v1/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart_app/api/v1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart_app/api/v1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farahzadfruit/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/farahzadfruit/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farahzadfruit/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/farahzadfruit/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/products_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/products_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/products_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home_app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_app/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +44,7 @@
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -41,7 +71,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/meysam eskini/PycharmProjects/farahzadfruit/static&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/meysam eskini/PycharmProjects/farahzadfruit/products_app&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -52,13 +82,40 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\meysam eskini\PycharmProjects\farahzadfruit\products_app" />
       <recent name="C:\Users\meysam eskini\PycharmProjects\farahzadfruit\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\meysam eskini\PycharmProjects\farahzadfruit\cart_app\api" />
+      <recent name="C:\Users\meysam eskini\PycharmProjects\farahzadfruit\products_app\api" />
       <recent name="C:\Users\meysam eskini\PycharmProjects\farahzadfruit\templates" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="farahzadfruit" type="Python.DjangoServer" factoryName="Django server">
+      <module name="farahzadfruit" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="farahzadfruit" type="Python.DjangoServer" factoryName="Django server">
       <module name="farahzadfruit" />
       <option name="ENV_FILES" value="" />
@@ -110,7 +167,15 @@
       <workItem from="1765703645741" duration="2406000" />
       <workItem from="1765706092969" duration="362000" />
       <workItem from="1765742552014" duration="2738000" />
-      <workItem from="1765791934624" duration="1729000" />
+      <workItem from="1765791934624" duration="2549000" />
+      <workItem from="1765796175665" duration="11114000" />
+      <workItem from="1765836179184" duration="6106000" />
+      <workItem from="1765870561153" duration="1005000" />
+      <workItem from="1765873832197" duration="11542000" />
+      <workItem from="1766045286724" duration="14102000" />
+      <workItem from="1766083914414" duration="16118000" />
+      <workItem from="1766129076409" duration="24587000" />
+      <workItem from="1766221495170" duration="885000" />
     </task>
     <servers />
   </component>

@@ -44,10 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'django_ckeditor_5',
     'slugify',
     'products_app.apps.ProductsAppConfig',
     'accounts_app.apps.AccountsAppConfig',
+    'cart_app.apps.CartAppConfig',
+    'banner_app.apps.BannerAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -89,10 +92,10 @@ AUTH_USER_MODEL = "accounts_app.User"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'farahzadlrd_db',
+        'NAME': 'localdata',
         'USER': 'postgres',
-        'PASSWORD':'kJhC2m2ldXhJcT7AQnzd',
-        'HOST': 'farahzadshop-zcd-service',
+        'PASSWORD':'meysam@@138100',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -118,9 +121,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
+
 
 USE_I18N = True
 
