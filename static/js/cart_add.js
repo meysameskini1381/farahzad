@@ -22,10 +22,11 @@ function addToCart(productId, btn) {
             "Content-Type": "application/json",
             "X-CSRFToken": csrftoken,
         },
+        credentials: "same-origin",    // 🔴 اضافه شد برای ارسال session cookie
         body: JSON.stringify({ product_id: productId, quantity: 1 }),
     })
     .then(res => {
-        if (!res.ok) throw new Error("ADD FAILED");
+        if (!res.ok) throw new Error(`ADD FAILED → Status ${res.status}`);
         return res.json();
     })
     .then(() => {
@@ -33,9 +34,12 @@ function addToCart(productId, btn) {
             btn.disabled = true;
             btn.innerHTML = "افزوده شد ✅";
         }
+        // اگر بخواهیم بلافاصله سبد خرید آپدیت شود
+        loadCart && loadCart();
     })
     .catch(err => console.error(err));
 }
+
 
 document.addEventListener("mousedown", function (e) {
     const btn = e.target.closest(".product-add");

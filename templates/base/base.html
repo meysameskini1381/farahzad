@@ -240,6 +240,30 @@
                 </div>
             </div>
         </nav>
+
+
+
+
+
+<script>
+if (!window.csrftoken) {
+    // اول سعی کن از meta tag بگیر (اگر از تمپلیت استفاده می‌کردی)
+    window.csrftoken =
+        document.querySelector('[name=csrfmiddlewaretoken]')?.value || "";
+
+    // اگر خالی بود، از کوکی بخوان
+    if (!window.csrftoken) {
+        const cookieValue = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('csrftoken='))
+            ?.split('=')[1];
+        window.csrftoken = cookieValue || "";
+    }
+}
+console.log("CSRF Token:", window.csrftoken);
+
+</script>
+
 {% block body %}
 
 {% endblock %}

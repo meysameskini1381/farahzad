@@ -188,6 +188,29 @@
         <!--=====================================
                 PRODUCT DETAILS PART END
         =======================================-->
+         <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+        <div class="cart-total">
+            <i class="fas fa-shopping-basket"></i>
+            <span>کل مورد (<span id="cart-count">0</span>)</span>
+        </div>
+        <button class="cart-close"><i class="icofont-close"></i></button>
+    </div>
+    <ul class="cart-list" id="cart-list">
+        <!-- آیتم‌ها به‌صورت دینامیک بارگذاری می‌شن -->
+    </ul>
+    <div class="cart-footer">
+        <button class="coupon-btn">آیا کد تخفیف دارید؟</button>
+        <form class="coupon-form">
+            <input type="text" placeholder="کد تخفیف خود را وارد کنید">
+            <button type="submit"><span>ثبت</span></button>
+        </form>
+        <a class="cart-checkout-btn" href="checkout.html">
+            <span class="checkout-label">برو به تسویه حساب</span>
+            <span class="checkout-price" id="checkout-price">0 ریال</span>
+        </a>
+    </div>
+</aside>
 
 
         <!--=====================================
@@ -390,6 +413,7 @@
 
 <script src="{% static 'js/product-detail.js' %}"></script>
 <script src="{% static 'js/omment-product.js' %}"></script>
+<script src="{% static 'js/cart_detail.js' %}"></script>
 
 
 {% endblock %}

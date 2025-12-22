@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from cart_app.models import Cart, CartItem
 from products_app.models import Product
 from cart_app.api.serializers import CartSerializer
-
+from rest_framework.authentication import SessionAuthentication
 
 class AddToCartAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -63,3 +63,41 @@ class AddToCartAPIView(APIView):
         serializer = CartSerializer(cart)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+
+class UpdateCartItemAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication]
+
+    def patch(self, request, item_id):
+        cart = get_object_or_404(Cart, user=request.user)
+        item = get_object_or_404(CartItem, id=item_id, cart=cart)
+
+        quantity = request.data.get("quantity")
+        if not quantity:
+            return Response({"detail": "quantity is required"}, status=400)
+
+        quantity = int(quantity)
+        item.quantity = quantity
+        item.save()
+
+        return Response(CartSerializer(cart).data)
+
+
+class DeleteCartItemAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication]
+
+    def delete(self, request, item_id):
+        cart = get_object_or_404(Cart, user=request.user)
+        item = get_object_or_404(CartItem, id=item_id, cart=cart)
+        item.delete()
+        return Response({"detail": "deleted"})
+
+
+class GetCartAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        return Response(CartSerializer(cart).data)
