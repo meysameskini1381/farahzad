@@ -540,7 +540,7 @@
                                         </ul>
                                     </div>
                                     <div class="view-add-group">
-                                        <button class="product-add" title="افزودن به سبد خرید">
+                                        <button class="product-add" data-product-id="{{ product.id }}" title="افزودن به سبد خرید">
                                             <i class="fas fa-shopping-basket"></i>
                                             <span>افزودن به سبد خرید</span>
                                         </button>
@@ -890,7 +890,7 @@
 </script>
 
 <script src="{% static 'js/shop.js' %}"></script>
-<script src="{% static 'js/shop-cart.js' %}"></script>
+<script src="{% static 'js/cart_add.js' %}"></script>
 
 
 {% endblock %}

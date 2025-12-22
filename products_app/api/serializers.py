@@ -169,10 +169,11 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         )
 
     def get_comments(self, obj):
+        # فرض بر این است که obj.product_comments همیشه موجود است (که هست)
         qs = obj.product_comments.filter(
             parent__isnull=True,
-            is_active=True
-        ).order_by('-created_at')
+            is_active=True  # <--- آیا فیلد is_active در ProductComment وجود دارد؟ (بله، فرستادید)
+        ).order_by('-created_at')  # <--- آیا فیلد created_at در ProductComment وجود دارد؟ (بله، فرستادید)
 
         return ProductCommentSerializer(qs, many=True).data
 
