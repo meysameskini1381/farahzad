@@ -5,6 +5,10 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 from django.conf import settings
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **extra_fields):
@@ -49,24 +53,99 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.phone
 
 
-
-
-class UserAddress(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
         on_delete=models.CASCADE,
-        related_name="addresses"
+        related_name="profile",
+        verbose_name="کاربر"
     )
 
-    receiver_name = models.CharField(max_length=100)
-    receiver_phone = models.CharField(max_length=15)
+    phone = models.CharField(
+        max_length=11,
+        blank=True,
+        null=True,
+        verbose_name="شماره تماس"
+    )
 
-    province = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    address = models.TextField()
-    postal_code = models.CharField(max_length=20)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="تاریخ ایجاد"
+    )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name="آخرین بروزرسانی"
+    )
 
-    def __str__(self):
-        return f"{self.user} - {self.city}"
+    class Meta:
+        verbose_name = "پروفایل"
+        verbose_name_plural = "پروفایل‌ها"
+
+
+
+
+class Address(models.Model):
+    profile = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+        related_name="addresses",
+        verbose_name="پروفایل"
+    )
+
+    title = models.CharField(
+        max_length=100,
+        verbose_name="عنوان آدرس",
+        help_text="مثال: منزل، محل کار"
+    )
+
+    full_address = models.TextField(
+        verbose_name="آدرس کامل",
+        help_text="مثال: بلوار ولایت انتهای نگارستان ۱۵ منزل اسکینی طبقه دوم پلاک ۱۲"
+    )
+
+    is_default = models.BooleanField(
+        default=False,
+        verbose_name="آدرس پیش‌فرض"
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="تاریخ ایجاد"
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name="آخرین بروزرسانی"
+    )
+
+    class Meta:
+        verbose_name = "آدرس"
+        verbose_name_plural = "آدرس‌ها"
+        ordering = ["-is_default", "-created_at"]
+    #
+    # def __str__(self):
+    #     return f"{self.title} - {self.profile.user.username}"
+
+    def save(self, *args, **kwargs):
+        # اگر این آدرس پیش‌فرض است، بقیه را غیرفعال کن
+        if self.is_default:
+            Address.objects.filter(
+                profile=self.profile,
+                is_default=True
+            ).exclude(pk=self.pk).update(is_default=False)
+        super().save(*args, **kwargs)
+
+
+# سیگنال برای ساخت خودکار Profile هنگام ثبت‌نام
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_user_profile(sender, instance, **kwargs):
+    if hasattr(instance, 'profile'):
+        instance.profile.save()
+

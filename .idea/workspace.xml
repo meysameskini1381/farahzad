@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2796a63e-25e9-4260-9d9d-79bc3fbc3213" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/js/cart_detail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts_app/api/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts_app/api/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts_app/api/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/account/profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts_app/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart_app/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart_app/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart_app/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart_app/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts_app/migrations/0002_useraddress.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farahzadfruit/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/farahzadfruit/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farahzadfruit/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/farahzadfruit/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/cart_add.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/cart_add.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home_app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/product_app/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product_app/product-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/product_app/product_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product_app/product_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +162,7 @@
       <workItem from="1766083914414" duration="16118000" />
       <workItem from="1766129076409" duration="24587000" />
       <workItem from="1766221495170" duration="885000" />
+      <workItem from="1766567985713" duration="7377000" />
     </task>
     <servers />
   </component>

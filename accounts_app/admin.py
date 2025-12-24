@@ -46,3 +46,20 @@ class UserAdmin(BaseUserAdmin):
     readonly_fields = ("created_at", "last_login")
 
     filter_horizontal = ("groups", "user_permissions")
+
+
+class AddressInline(admin.TabularInline):
+    model = Address
+    extra = 0
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'phone', 'created_at']
+    inlines = [AddressInline]
+    search_fields = ['user__username', 'phone']
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ['title', 'profile', 'is_default', 'created_at']
+    list_filter = ['is_default']
+    search_fields = ['title', 'full_address', 'profile__user__username']

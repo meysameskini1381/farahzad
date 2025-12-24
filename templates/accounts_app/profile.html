@@ -1,0 +1,217 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block body %}
+    <br><br>
+<section class="inner-section profile-part">
+    <div class="container">
+        <div class="row">
+            <!-- Profile Section -->
+            <div class="col-lg-12">
+                <div class="account-card">
+                    <div class="account-title">
+                        <h4>پروفایل شما</h4>
+                        <button data-bs-toggle="modal" data-bs-target="#profile-edit">ویرایش پروفایل</button>
+                    </div>
+                    <div class="account-content">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="profile-image">
+                                    <a href="#"><img src="{% static 'images/user.png' %}" alt="user"></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label">نام</label>
+                                    <input class="form-control" type="text" id="profileUsername" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-label">ایمیل</label>
+                                    <input class="form-control" type="email" id="profileEmail" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="profile-btn">
+                                    <a href="/change-password/">تغییر پسوورد</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Addresses Section -->
+            <div class="col-lg-12">
+                <div class="account-card">
+                    <div class="account-title">
+                        <h4>آدرس ارسال</h4>
+                        <button onclick="openAddAddressModal()">افزودن آدرس</button>
+                    </div>
+                    <div class="account-content">
+                        <div class="row" id="addressesContainer">
+                            <div class="col-12 text-center py-4">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">در حال بارگذاری...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods Section -->
+            <div class="col-lg-12">
+                <div class="account-card mb-0">
+                    <div class="account-title">
+                        <h4>نحوه پرداخت</h4>
+                        <button data-bs-toggle="modal" data-bs-target="#payment-add">افزودن کارت بانکی</button>
+                    </div>
+                    <div class="account-content">
+                        <div class="row" id="paymentMethodsContainer">
+                            <div class="col-12 text-center py-4">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">در حال بارگذاری...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Address Modal - Redesigned -->
+<div class="modal fade" id="addressModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+            <!-- Header -->
+            <div class="modal-header border-0 py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <h5 class="modal-title text-white fw-bold" id="addressModalLabel">
+                    <i class="icofont-plus-circle me-2"></i>
+                    افزودن آدرس جدید
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Form -->
+            <form id="addressForm">
+                <div class="modal-body p-4" style="background: #f8f9fa;">
+
+                    <!-- Address Title -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark mb-2">
+                            <i class="icofont-ui-home text-primary me-2"></i>
+                            عنوان آدرس
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-lg rounded-3 border-2"
+                               id="addressTitle"
+                               placeholder="مثال: خانه، محل کار، ..."
+                               required>
+                    </div>
+
+                    <!-- Full Address -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark mb-2">
+                            <i class="icofont-location-pin text-danger me-2"></i>
+                            آدرس کامل
+                        </label>
+                        <textarea class="form-control form-control-lg rounded-3 border-2"
+                                  id="addressFull"
+                                  rows="4"
+                                  placeholder="استان، شهر، خیابان، کوچه، پلاک و واحد را وارد کنید"
+                                  required></textarea>
+                    </div>
+
+                    <!-- Default Checkbox -->
+                    <div class="bg-white rounded-3 p-3 border">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   id="addressDefault"
+                                   style="width: 3.5rem; height: 1.8rem; cursor: pointer;">
+                            <label class="form-check-label ms-2 fw-bold" for="addressDefault" style="cursor: pointer;">
+                                <i class="icofont-star text-warning"></i>
+                                تنظیم به عنوان آدرس پیش‌فرض
+                            </label>
+                        </div>
+                        <small class="text-muted d-block mt-2 me-5">
+                            این آدرس به صورت خودکار در سفارش‌ها انتخاب می‌شود
+                        </small>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer border-0 p-4 bg-white">
+                    <button type="button" class="btn btn-lg btn-light px-4 rounded-3" data-bs-dismiss="modal">
+                        <i class="icofont-close-circled me-2"></i>
+                        انصراف
+                    </button>
+                    <button type="submit" class="btn btn-lg px-5 rounded-3 text-white fw-bold"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="icofont-check-circled me-2"></i>
+                        ذخیره آدرس
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/account/profile.js' %}"></script>
+
+<style>
+/* Modal Styles */
+#addressModal .modal-content {
+    border-radius: 1rem;
+}
+
+#addressModal .form-control {
+    border-color: #dee2e6;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+#addressModal .form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
+    outline: none;
+}
+
+#addressModal textarea.form-control {
+    resize: none;
+}
+
+#addressModal .btn-light {
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+}
+
+#addressModal .btn-light:hover {
+    background-color: #dee2e6;
+}
+
+#addressModal button[type="submit"] {
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#addressModal button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+}
+
+.profile-card.address {
+    transition: all 0.3s ease;
+}
+
+.profile-card.address:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+</style>
+{% endblock %}
