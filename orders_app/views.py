@@ -1,3 +1,4 @@
 from django.shortcuts import render
+def order_user(request):
 
-# Create your views here.
+    return render(request,'orders_app/checkout.html')

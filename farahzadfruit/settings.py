@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accounts_app.apps.AccountsAppConfig',
     'cart_app.apps.CartAppConfig',
     'banner_app.apps.BannerAppConfig',
+    'orders_app.apps.OrdersAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ AUTH_USER_MODEL = "accounts_app.User"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mdata',
+        'NAME': 'hana',
         'USER': 'postgres',
         'PASSWORD':'meysam@@138100',
         'HOST': 'localhost',

@@ -189,7 +189,10 @@ class Product(models.Model):
         help_text="آخرین زمان بروزرسانی محصول"
     )
 
-
+    @property
+    def final_price(self):
+        """قیمت نهایی محصول (با تخفیف یا بدون تخفیف)"""
+        return self.discount_price if self.discount_price else self.price
 
     class Meta:
         verbose_name = "محصول"

@@ -1,0 +1,245 @@
+// checkout.js - اصلاح شده
+
+function getCSRFToken() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    if (meta) return meta.content;
+    const match = document.cookie.match(/csrftoken=([^;]+)/);
+    return match ? match[1] : "";
+}
+
+const CSRF_TOKEN = getCSRFToken();
+
+async function apiRequest(url, method = "GET", data = null) {
+    const options = {
+        method: method,
+        credentials: "same-origin",
+        headers: {
+            "X-CSRFToken": CSRF_TOKEN,
+        }
+    };
+
+    if (data) {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(data);
+    }
+
+    const res = await fetch(url, options);
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || 'خطا در ارتباط با سرور');
+    }
+    return await res.json();
+}
+
+function formatPrice(num) {
+    return new Intl.NumberFormat("fa-IR").format(num) + " تومان";
+}
+
+let selectedAddressId = null;
+let appliedCouponCode = null;
+let cartData = null;
+let discountAmount = 0;
+
+// آدرس‌ها
+async function loadAddresses() {
+    try {
+        const data = await apiRequest('/api/accounts/addresses/');
+        renderAddresses(data);
+    } catch (error) {
+        document.getElementById('addressesContainer').innerHTML =
+            '<div class="alert alert-danger">خطا در بارگذاری آدرس‌ها</div>';
+    }
+}
+
+function renderAddresses(addresses) {
+    const container = document.getElementById('addressesContainer');
+
+    if (!addresses || addresses.length === 0) {
+        container.innerHTML = `
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle"></i>
+                هیچ آدرسی ثبت نشده است. لطفاً ابتدا آدرس خود را اضافه کنید.
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = addresses.map(addr => `
+        <div class="address-card" data-address-id="${addr.id}" onclick="selectAddress(${addr.id})">
+            <div class="d-flex align-items-start">
+                <input type="radio" name="address" class="form-check-input mt-1" ${addr.is_default ? 'checked' : ''}>
+                <div class="ms-3 flex-grow-1">
+                    <h6 class="mb-2">${addr.title}</h6>
+                    <p class="text-muted mb-0 small">${addr.full_address}</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    if (addresses.find(a => a.is_default)) {
+        const defaultAddr = addresses.find(a => a.is_default);
+        selectAddress(defaultAddr.id);
+    }
+}
+
+function selectAddress(addressId) {
+    selectedAddressId = addressId;
+
+    document.querySelectorAll('.address-card').forEach(card => {
+        card.classList.remove('selected');
+        card.querySelector('input[type="radio"]').checked = false;
+    });
+
+    const selectedCard = document.querySelector(`[data-address-id="${addressId}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add('selected');
+        selectedCard.querySelector('input[type="radio"]').checked = true;
+    }
+
+    updateCheckoutButton();
+}
+
+// سبد خرید
+async function loadCart() {
+    try {
+        // اصلاح مسیر
+        cartData = await apiRequest('/api/cart/get/');
+        renderCart(cartData);
+        updatePriceBreakdown();
+    } catch (error) {
+        document.getElementById('cartItemsContainer').innerHTML =
+            '<div class="alert alert-danger">خطا در بارگذاری سبد خرید</div>';
+    }
+}
+
+function renderCart(cart) {
+    const container = document.getElementById('cartItemsContainer');
+
+    if (!cart.items || cart.items.length === 0) {
+        container.innerHTML = '<div class="alert alert-info">سبد خرید خالی است</div>';
+        return;
+    }
+
+    container.innerHTML = cart.items.map(item => `
+        <div class="order-item">
+            <img src="${item.product_image || 'https://via.placeholder.com/80'}" alt="${item.product_title}">
+            <div class="flex-grow-1">
+                <h6 class="mb-1">${item.product_title}</h6>
+                <small class="text-muted">${item.quantity} × ${formatPrice(item.price)}</small>
+            </div>
+            <strong>${formatPrice(item.total_price)}</strong>
+        </div>
+    `).join('');
+}
+
+function updatePriceBreakdown() {
+    if (!cartData) return;
+
+    const subtotal = cartData.total_price;
+    const shipping = 0;
+    const total = subtotal - discountAmount + shipping;
+
+    document.getElementById('subtotalPrice').textContent = formatPrice(subtotal);
+    document.getElementById('shippingPrice').textContent = shipping === 0 ? 'رایگان' : formatPrice(shipping);
+    document.getElementById('totalPrice').textContent = formatPrice(total);
+
+    const discountRow = document.getElementById('discountRow');
+    if (discountAmount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('discountPrice').textContent = '- ' + formatPrice(discountAmount);
+    } else {
+        discountRow.style.display = 'none';
+    }
+}
+
+// کوپن
+async function applyCoupon() {
+    const code = document.getElementById('couponCode').value.trim();
+    const messageDiv = document.getElementById('couponMessage');
+    const btn = document.getElementById('applyCouponBtn');
+
+    if (!code) {
+        messageDiv.innerHTML = '<div class="alert alert-warning">لطفاً کد تخفیف را وارد کنید</div>';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> در حال بررسی...';
+
+    try {
+        const result = await apiRequest('/api/orders/validate-coupon/', 'POST', { code });
+
+        if (result.valid) {
+            appliedCouponCode = code;
+            discountAmount = result.discount_amount;
+
+            messageDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i>
+                    ${result.message}
+                    <span class="discount-badge">${result.coupon_details.discount_percentage}% تخفیف</span>
+                </div>`;
+
+            updatePriceBreakdown();
+        }
+    } catch (error) {
+        messageDiv.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+        appliedCouponCode = null;
+        discountAmount = 0;
+        updatePriceBreakdown();
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-check-circle"></i> اعمال کوپن';
+    }
+}
+
+// ثبت سفارش
+function updateCheckoutButton() {
+    const btn = document.getElementById('checkoutBtn');
+    const canCheckout = selectedAddressId && cartData && cartData.items.length > 0;
+
+    btn.disabled = !canCheckout;
+}
+
+async function checkout() {
+    const btn = document.getElementById('checkoutBtn');
+
+    if (!selectedAddressId) {
+        alert('لطفاً آدرس تحویل را انتخاب کنید');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> در حال ثبت...';
+
+    const orderData = {
+        address_id: selectedAddressId,
+        notes: document.getElementById('orderNotes').value.trim()
+    };
+
+    if (appliedCouponCode) {
+        orderData.coupon_code = appliedCouponCode;
+    }
+
+    try {
+        const result = await apiRequest('/api/orders/checkout/', 'POST', orderData);
+
+        if (result.success) {
+            alert('سفارش شما با موفقیت ثبت شد!\nشماره سفارش: ' + result.order.order_number);
+            window.location.href = '/orders/';
+        }
+    } catch (error) {
+        alert('خطا در ثبت سفارش: ' + error.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-lock"></i> تکمیل خرید';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadAddresses();
+    loadCart();
+
+    document.getElementById('applyCouponBtn').addEventListener('click', applyCoupon);
+    document.getElementById('checkoutBtn').addEventListener('click', checkout);
+});
+
+window.selectAddress = selectAddress;
