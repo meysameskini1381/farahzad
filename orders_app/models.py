@@ -272,6 +272,7 @@ class Order(models.Model):
         unique_id = uuid.uuid4().hex[:6].upper()
         return f"ORD{timestamp}{unique_id}"
 
+    @property
     def calculate_totals(self):
         self.subtotal = sum(
             Decimal(str(item.total_price))

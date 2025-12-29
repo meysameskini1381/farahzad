@@ -14,20 +14,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-       path('admin/', admin.site.urls),
-       path('ckeditor5/', include('django_ckeditor_5.urls')),
-       path('',include('home_app.urls')),
-       path('product/', include('products_app.urls')),
-       path("api/", include("products_app.api.urls")),
-       path('cart/', include('cart_app.urls')),
-       path("api/account/", include("accounts_app.api.urls")),
-       path('orders/', include('orders_app.api.urls')),
-
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+    path('admin/', admin.site.urls),
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
+    path('', include('home_app.urls')),
+    path('product/', include('products_app.urls')),
+    path("api/", include("products_app.api.urls")),
+    path('cart/', include('cart_app.urls')),
+    path("api/account/", include("accounts_app.api.urls")),
+    path('orders/api/', include('orders_app.api.urls')),  # API endpoints
+    path('orders/', include('orders_app.urls')),          # UI endpoints
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

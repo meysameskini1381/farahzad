@@ -5,35 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2796a63e-25e9-4260-9d9d-79bc3fbc3213" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/orders_app/api/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orders_app/api/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orders_app/api/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/orders_app/checkout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/css-add.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/orders-app/order_detail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/orders_app/order_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts_app/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts_app/migrations/0002_profile_address.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts_app/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/orders-app/checkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart_app/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/farahzadfruit/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/farahzadfruit/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/farahzadfruit/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/farahzadfruit/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders_app/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders_app/migrations/0002_order_paid.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders_app/migrations/0003_order_order_number_alter_order_paid.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders_app/migrations/0004_alter_order_order_number.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders_app/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders_app/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders_app/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders_app/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0002_product_vip.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0003_product_is_featured.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0004_product_featured_priority.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0005_productfeature_productgallery.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0006_productcomment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0007_productcomment_email.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0008_productcomment_name.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0009_alter_product_featured_priority.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/products_app/migrations/0010_alter_product_featured_priority.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/account/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/account/profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/cart_detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/cart_detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/orders-app/checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/orders-app/checkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts_app/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts_app/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home_app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home_app/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/orders_app/checkout.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Python Script" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -64,23 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/meysam eskini/PycharmProjects/farahzadfruit/orders_app/api",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/meysam eskini/PycharmProjects/farahzadfruit/orders_app/api&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\meysam eskini\PycharmProjects\farahzadfruit\orders_app\api" />
@@ -180,6 +170,9 @@
       <workItem from="1766129076409" duration="24587000" />
       <workItem from="1766221495170" duration="885000" />
       <workItem from="1766567985713" duration="14941000" />
+      <workItem from="1766774895953" duration="13644000" />
+      <workItem from="1766852365479" duration="1717000" />
+      <workItem from="1767032510704" duration="1701000" />
     </task>
     <servers />
   </component>

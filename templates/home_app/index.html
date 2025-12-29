@@ -489,8 +489,8 @@
                                             <li><a href="#" class="icofont-instagram" title="Instagram"></a></li>
                                         </ul>
                                     </div>
-                                    <div class="view-add-group">
-                                        <button class="product-add" title="افزودن به سبد خرید">
+                                          <div class="view-add-group">
+                                        <button class="product-add" data-product-id="{{ product_vip.id }}" title="افزودن به سبد خرید">
                                             <i class="fas fa-shopping-basket"></i>
                                             <span>افزودن به سبد خرید</span>
                                         </button>
@@ -873,9 +873,7 @@
                                             <img src="{{ list_product.image.url }}" alt="product">
                                         </a>
                                         <div class="product-widget">
-                                            <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
-                                            <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
-                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
+
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -1073,101 +1071,7 @@
         <!--=====================================
                     BRAND PART START
         =======================================-->
-        <section class="section brand-part">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-heading">
-                            <h2>خرید بر اساس برندها</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-slider slider-arrow">
-                    <div class="brand-wrap">
-                        <div class="brand-media">
-                            <img src="{% static 'images/brand/01.jpg' %}" alt="brand">
-                            <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
-                            </div>
-                        </div>
-                        <div class="brand-meta">
-                            <h4>محصولات طبیعی</h4>
-                            <p>(45 مورد)</p>
-                        </div>
-                    </div>
-                    <div class="brand-wrap">
-                        <div class="brand-media">
-                            <img src="{% static 'images/brand/02.jpg' %}" alt="brand">
-                            <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
-                            </div>
-                        </div>
-                        <div class="brand-meta">
-                            <h4>وگان لاوور</h4>
-                            <p>(45 مورد)</p>
-                        </div>
-                    </div>
-                    <div class="brand-wrap">
-                        <div class="brand-media">
-                            <img src="{% static 'images/brand/03.jpg' %}" alt="brand">
-                            <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
-                            </div>
-                        </div>
-                        <div class="brand-meta">
-                            <h4>ارگانیک فوودی</h4>
-                            <p>(45 مورد)</p>
-                        </div>
-                    </div>
-                    <div class="brand-wrap">
-                        <div class="brand-media">
-                            <img src="{% static 'images/brand/04.jpg' %}" alt="brand">
-                            <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
-                            </div>
-                        </div>
-                        <div class="brand-meta">
-                            <h4>اکوماکرت</h4>
-                            <p>(45 مورد)</p>
-                        </div>
-                    </div>
-                    <div class="brand-wrap">
-                        <div class="brand-media">
-                            <img src="{% static 'images/brand/05.jpg' %}" alt="brand">
-                            <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
-                            </div>
-                        </div>
-                        <div class="brand-meta">
-                            <h4>فرش فورتن</h4>
-                            <p>(45 مورد)</p>
-                        </div>
-                    </div>
-                    <div class="brand-wrap">
-                        <div class="brand-media">
-                            <img src="{% static 'images/brand/06.jpg' %}" alt="brand">
-                            <div class="brand-overlay">
-                                <a href="brand-single.html"><i class="fas fa-link"></i></a>
-                            </div>
-                        </div>
-                        <div class="brand-meta">
-                            <h4>اکنوتر</h4>
-                            <p>(45 مورد)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-btn-50">
-                            <a href="brand-list.html" class="btn btn-outline">
-                                <i class="fas fa-eye"></i>
-                                <span>مشاهده تمام برنده ها</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 		<!--=====================================
                     BRAND PART END
         =======================================-->

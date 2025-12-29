@@ -157,7 +157,7 @@ async function quickCheckout() {
             notes: ''
         };
 
-        const response = await fetch('/orders/checkout/', {
+        const response = await fetch('/orders/api/checkout/', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -170,8 +170,41 @@ async function quickCheckout() {
         const result = await response.json();
 
         if (response.ok && result.success) {
-            alert(result.message || 'سفارش با موفقیت ثبت شد');
-            window.location.href = `/orders/${result.order.id}/`;
+            // پیام موفقیت و شروع شمارش معکوس
+            let countdown = 5;
+            const messageBox = document.createElement("div");
+            messageBox.style.position = "fixed";
+            messageBox.style.top = "50%";
+            messageBox.style.left = "50%";
+            messageBox.style.transform = "translate(-50%, -50%)";
+            messageBox.style.background = "#fff";
+            messageBox.style.padding = "20px 30px";
+            messageBox.style.borderRadius = "10px";
+            messageBox.style.boxShadow = "0 0 10px rgba(0,0,0,0.3)";
+            messageBox.style.zIndex = "9999";
+            messageBox.style.textAlign = "center";
+            messageBox.style.fontFamily = "IRANSans, sans-serif";
+            messageBox.innerHTML = `
+                <h3>در حال ساخت سفارش...</h3>
+                <p>شما در حال انتقال به صفحه سفارش هستید</p>
+                <h2 id="count-num">${countdown}</h2>
+            `;
+            document.body.appendChild(messageBox);
+
+            const interval = setInterval(() => {
+                countdown--;
+                document.getElementById('count-num').textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    document.body.removeChild(messageBox);
+
+                    if (result.order && result.order.id) {
+                        window.location.href = `/orders/${result.order.id}/`;
+                    } else {
+                        window.location.href = '/orders/api/';
+                    }
+                }
+            }, 1000);
         } else {
             const errorMsg = result.message || result.errors || 'خطا در ثبت سفارش';
             alert(errorMsg);

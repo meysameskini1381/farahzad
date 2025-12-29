@@ -131,3 +131,35 @@ class OrderViewSet(viewsets.ReadOnlyModelViewSet):
             'success': True,
             'message': 'سفارش با موفقیت لغو شد'
         })
+
+
+@action(detail=True, methods=['get'])
+def detail(self, request, pk=None):
+    """دریافت جزئیات سفارش"""
+    order = self.get_object()
+
+    items = [{
+        'id': item.id,
+        'product_name': item.product.name,
+        'product_image': item.product.image.url if item.product.image else '',
+        'price': str(item.price),
+        'quantity': item.quantity,
+        'total_price': str(item.total_price),
+    } for item in order.items.all()]
+
+    return Response({
+        'success': True,
+        'order': {
+            'id': order.id,
+            'order_number': order.order_number,
+            'status': order.status,
+            'subtotal': str(order.subtotal),
+            'discount_amount': str(order.discount_amount),
+            'total_price': str(order.total_price),
+            'items': items,
+            'address': {
+                'title': order.address.title,
+                'full_address': order.address.full_address,
+            } if order.address else None,
+        }
+    })
