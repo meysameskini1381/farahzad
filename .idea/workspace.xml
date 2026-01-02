@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2796a63e-25e9-4260-9d9d-79bc3fbc3213" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/core_app/api/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core_app/api/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core_app/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core_app/models.py" afterDir="false" />
+>>>>>>> 4232bf5216ff9e9f7b4cfd080a0eec68f2c04b48
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +23,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
         <option value="CSS File" />
         <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+=======
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+>>>>>>> 4232bf5216ff9e9f7b4cfd080a0eec68f2c04b48
       </list>
     </option>
   </component>
