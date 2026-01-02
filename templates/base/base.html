@@ -83,10 +83,17 @@
                     <a href="index.html" class="header-logo">
                         <img src="{% static 'images/logo.png' %}" alt="logo">
                     </a>
-                    <a href="login.html" class="header-widget" title="My Account">
-                        <img src="{% static 'images/user.png' %}" alt="user">
-                        <span>ورود</span>
-                    </a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'account_app:profile' %}" class="header-widget" title="حساب کاربری">
+                            <img src="{% static 'images/user.png' %}" alt="user">
+                            <span>حساب کاربری</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'account_app:auth_page' %}" class="header-widget" title="ورود">
+                            <img src="{% static 'images/user.png' %}" alt="user">
+                            <span>ورود</span>
+                        </a>
+                    {% endif %}
 
                     <form class="header-form">
                         <input type="text" placeholder="جست و جو کن ...">
@@ -125,36 +132,22 @@
                     <div class="col-lg-12">
                         <div class="navbar-content">
                             <ul class="navbar-list">
-                                <li class="navbar-item dropdown">
-                                    <a class="navbar-link dropdown-arrow" href="{% url 'home_app:home' %}">خانه</a>
+                                 <li class="navbar-item">
+                                    <a class="navbar-link" href="{% url 'home_app:home' %}">خانه</a>
                                 </li>
-{#                                <li class="navbar-item dropdown">#}
-{#                                    <a class="navbar-link dropdown-arrow" href="#">صفحات</a>#}
-{#                                    <ul class="dropdown-position-list">#}
-{#                                        <li><a href="faq.html">سوالات متداول</a></li>#}
-{#                                        <li><a href="offer.html">تخفیفات</a></li>#}
-{#                                        <li><a href="profile.html">پروفایل من</a></li>#}
-{#                                        <li><a href="wallet.html">کیف پول من</a></li>#}
-{#                                        <li><a href="about.html">درباره ما</a></li>#}
-{#                                        <li><a href="contact.html">ارتباط باما</a></li>#}
-{#                                        <li><a href="privacy.html">سیاست حفظ حریم خصوصی</a></li>#}
-{#                                        <li><a href="coming-soon.html">در دست ساخت</a></li>#}
-{#                                        <li><a href="blank-page.html">صفحه خالی</a></li>#}
-{#                                        <li><a href="error.html">خطای 404</a></li>#}
-{#                                        <li><a href="email-template.html">قالب ایمیل</a></li>#}
-{#                                    </ul>#}
-{#                                </li>#}
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link dropdown-arrow" href="#">احراز هویت</a>
+                                    <a class="navbar-link dropdown-arrow" >احراز هویت</a>
                                     <ul class="dropdown-position-list">
-                                        <li><a href="login.html">لاگین</a></li>
-                                        <li><a href="register.html">ثبت نام</a></li>
+                                    {% if user.is_authenticated %}
 
+                                        <li><a href="login.html">پنل کاربری</a></li>
+                                    {% else %}
+                                         <li><a href="login.html">ورود ثبت نام </a></li>
+                                     {% endif %}
                                     </ul>
                                 </li>
-                                <li class="navbar-item dropdown">
-                                    <a class="navbar-link dropdown-arrow" href="#">بلاگ ها</a>
-
+                                 <li class="navbar-item">
+                                    <a class="navbar-link" href="faq.html">وبلاگ</a>
                                 </li>
                                 <li class="navbar-item">
                                     <a class="navbar-link" href="faq.html">راهنما</a>

@@ -711,8 +711,8 @@
                                     <a href="product-video.html">{{ vip_product.title }}</a>
                                 </h6>
                                 <h6 class="product-price">
-                                    <del>34 ريال</del>
-                                    <span>28 ريال<small>/کیلو</small></span>
+{#                                    <del>34 ريال</del>#}
+                                    <span>{{ vip_product.price }} <small>/کیلو</small></span>
                                 </h6>
                               <button
                                 type="button"
@@ -786,8 +786,8 @@
                                     <a href="product-video.html">(0 امتیاز)</a>
                                 </div>
                                 <h6 class="feature-price">
-                                    <del>34 ريال</del>
-                                    <span>28 ريال<small>/کیلو</small></span>
+{#                                    <del>34 ريال</del>#}
+                                    <span> {{ product_featured.price }}<small>/کیلو</small></span>
                                 </h6>
                                 <p class="feature-desc">فرحزاد</p>
 {#                               <button#}
@@ -889,8 +889,8 @@
                                             <a href="product-video.html">{{ list_product.title }}</a>
                                         </h6>
                                         <h6 class="product-price">
-                                            <del>34 ريال</del>
-                                            <span>28 ريال<small>/کیلو</small></span>
+{#                                            <del>34 ريال</del>#}
+                                            <span> {{ list_product.price }}<small>/کیلو</small></span>
                                         </h6>
                                         <button
                                         type="button"
@@ -931,7 +931,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-heading">
-                            <h2>محصولات اختصاصی گرینی</h2>
+                            <h2>محصولات اختصاصی فرحزاد</h2>
                         </div>
                     </div>
                 </div>
@@ -983,18 +983,14 @@
                                         <a href="product-video.html">فلفل سبز تازه</a>
                                     </h6>
                                     <h6 class="product-price">
-                                        <del>34 ريال</del>
-                                        <span>28 ريال<small>/کیلو</small></span>
+{#                                        <del>34 ريال</del>#}
+                                        <span> {{ product_count.price }}<small>/کیلو</small></span>
                                     </h6>
                                     <button class="product-add" title="افزودن به سبد خرید">
                                         <i class="fas fa-shopping-basket"></i>
                                         <span>افزودن</span>
                                     </button>
-                                    <div class="product-action">
-                                        <button class="action-minus" title="کم کردن"><i class="icofont-minus"></i></button>
-                                        <input class="action-input" title="تعداد مورد نیاز" type="text" name="quantity" value="1">
-                                        <button class="action-plus" title="زیاد کردن"><i class="icofont-plus"></i></button>
-                                    </div>
+
                                 </div>
                             </div>
                           {% endfor %}
@@ -1033,7 +1029,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="category-slider slider-arrow">پ
+                        <div class="category-slider slider-arrow">
                         {% for category in Category %}
                             <div class="category-wrap">
                                 <div class="category-media">
@@ -1043,8 +1039,8 @@
                                     </div>
                                 </div>
                                 <div class="category-meta">
-                                    <h4>محصولات خشک</h4>
-                                    <p>(25 مورد)</p>
+                                    <h4>{{ category.title }}</h4>
+                                    <p>(0 مورد)</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -1092,10 +1088,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="testimonial-slider slider-arrow">
+                         {% for comment in comments_users %}
                             <div class="testimonial-card">
                                 <i class="fas fa-quote-left"></i>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-								<h5>محمد محمدی</h5>
+                                <p>{{ comment.text }}</p>
+								<h5>{{ comment.name }}</h5>
                                 <ul>
                                     <li class="fas fa-star"></li>
                                     <li class="fas fa-star"></li>
@@ -1105,45 +1102,7 @@
                                 </ul>
                                 <img src="{% static 'images/avatar/01.jpg' %}" alt="testimonial">
                             </div>
-                            <div class="testimonial-card">
-                                <i class="fas fa-quote-left"></i>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-								<h5>محمد محمدی</h5>
-                                <ul>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                </ul>
-                                <img src="{% static 'images/avatar/02.jpg' %}" alt="testimonial">
-                            </div>
-                            <div class="testimonial-card">
-                                <i class="fas fa-quote-left"></i>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-								<h5>محمد محمدی</h5>
-                                <ul>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                </ul>
-                                <img src="{% static 'images/avatar/03.jpg' %}" alt="testimonial">
-                            </div>
-                            <div class="testimonial-card">
-                                <i class="fas fa-quote-left"></i>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-								<h5>محمد محمدی</h5>
-                                <ul>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                </ul>
-                                <img src="{% static 'images/avatar/04.jpg' %}" alt="testimonial">
-                            </div>
+                         {% endfor %}
                         </div>
                     </div>
                 </div>

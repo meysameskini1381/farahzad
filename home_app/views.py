@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from products_app.models import Product,Category
+from products_app.models import Product,Category,ProductComment
 from django.db.models.functions import Random
 from django.db.models import Avg, Count
-
+from accounts_app.models import *
 
 
 class HomeView(TemplateView):
@@ -22,6 +22,7 @@ class HomeView(TemplateView):
         context['product_vip'] = Product.objects.filter(vip=True)[0:23]
 
         context['product_featured'] = Product.objects.filter(is_featured=True)[0:6]
+        context['comments_users'] = ProductComment.objects.all()
 
         context['list'] = (
             Product.objects

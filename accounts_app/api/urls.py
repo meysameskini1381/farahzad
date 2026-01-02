@@ -2,6 +2,8 @@ from django.urls import path
 from ..views import profile_view
 from accounts_app.api.views import *
 
+app_name = 'account_app'
+
 urlpatterns = [
     path('profile/', ProfileView.as_view(), name='profile'),
     path('addresses/', AddressListCreateView.as_view(), name='address-list'),
