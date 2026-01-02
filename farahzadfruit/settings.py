@@ -81,19 +81,36 @@ TEMPLATES = [
         },
     },
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
 
 WSGI_APPLICATION = 'farahzadfruit.wsgi.application'
 
 AUTH_USER_MODEL = "accounts_app.User"
 
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hana',
+        'NAME': 'meysam-eskini',
         'USER': 'postgres',
         'PASSWORD':'meysam@@138100',
         'HOST': 'localhost',
@@ -197,3 +214,19 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+CSRF_COOKIE_HTTPONLY = False  # مهم: باید False باشه تا JS بتونه بخونه
+
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+SESSION_SAVE_EVERY_REQUEST = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]

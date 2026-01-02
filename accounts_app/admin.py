@@ -63,3 +63,7 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ['title', 'profile', 'is_default', 'created_at']
     list_filter = ['is_default']
     search_fields = ['title', 'full_address', 'profile__user__username']
+
+@admin.register(OTP)
+class OTPAdmin(admin.ModelAdmin):
+    list_display = ['code','phone']

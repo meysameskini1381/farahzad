@@ -5,10 +5,10 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 from django.conf import settings
-from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from django.utils import timezone
+import random
 
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **extra_fields):
@@ -52,6 +52,30 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.phone
 
+
+class OTP(models.Model):
+    phone = models.CharField(max_length=11)
+    code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    is_used = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'otps'
+        ordering = ['-created_at']
+
+    def save(self, *args, **kwargs):
+        if not self.code:
+            self.code = str(random.randint(100000, 999999))
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timezone.timedelta(minutes=2)
+        super().save(*args, **kwargs)
+
+    def is_valid(self):
+        return not self.is_used and timezone.now() < self.expires_at
+
+    def is_expired(self):
+        return timezone.now() > self.expires_at
 
 class Profile(models.Model):
     user = models.OneToOneField(
