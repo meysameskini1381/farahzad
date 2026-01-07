@@ -111,11 +111,11 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'meysam-eskini',
+        'NAME': "meysameswiv_db",
         'USER': 'postgres',
-        'PASSWORD':'meysam@@138100',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD':'yBzIVnXbtXVL3j5v8unh',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
     }
 }
 # Password validation
