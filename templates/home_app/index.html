@@ -8,51 +8,7 @@
 
 
 {% block body %}
-<style>
-/* === TEMP FIX FOR ADD TO CART BUTTON (TEST ONLY) === */
 
-/* خود دکمه */
-.product-add {
-    position: relative !important;
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    z-index: 20 !important;
-}
-
-/* وقتی دکمه disabled یا added می‌شود */
-.product-add:disabled,
-.product-add.added {
-    display: inline-flex !important;
-    opacity: 0.8 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-}
-
-/* کارت محصول */
-.product-card,
-.product-item {
-    position: relative !important;
-    overflow: visible !important;
-}
-
-/* لینک‌هایی که کل کارت رو می‌پوشونن (مشکل رایج Home) */
-.product-card a,
-.product-item a {
-    pointer-events: auto !important;
-}
-
-/* pseudo-element های تم که کلیک رو می‌دزدن */
-.product-card::before,
-.product-card::after,
-.product-item::before,
-.product-item::after {
-    pointer-events: none !important;
-}
-</style>
 
 
         <!--=====================================
@@ -62,158 +18,33 @@
         <!--=====================================
                 CATEGORY SIDEBAR PART START
         =======================================-->
-        <aside class="category-sidebar">
-            <div class="category-header">
-                <h4 class="category-title">
-                    <i class="fas fa-align-left"></i>
-                    <span>دسته بندی</span>
-                </h4>
-                <button class="category-close"><i class="icofont-close"></i></button>
-            </div>
-            <ul class="category-list">
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-vegetable"></i>
-                        <span>سبزیجات</span>
-                    </a>
-                    <ul class="dropdown-list">
-						<li><a href="#">مارچوبه</a></li>
-                         <li><a href="#">کلم بروکلی</a></li>
-                         <li><a href="#">هویج</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-groceries"></i>
-                        <span>مواد غذایی</span>
-                    </a>
-                    <ul class="dropdown-list">
-						<li><a href="#">غلات و نان</a></li>
-                         <li><a href="#">لبنیات و تخم مرغ</a></li>
-                         <li><a href="#">روغن و چربی</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-fruit"></i>
-                        <span>میوه ها</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">سیب</a></li>
-                        <li><a href="#">پرتقال</a></li>
-                        <li><a href="#">توت فرنگی</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-dairy-products"></i>
-                        <span>مزرعه لبنیات</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">خامه</a></li>
-                        <li><a href="#">شیر</a></li>
-                        <li><a href="#">کره</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-crab"></i>
-                        <span>مواد غذایی دریایی</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">خرچنگ</a></li>
-                        <li><a href="#">اختابوس</a></li>
-                        <li><a href="#">میگو</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-salad"></i>
-                        <span>غذاهای رژیمی</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">سالمون</a></li>
-                        <li><a href="#">سیب زمینی</a></li>
-                        <li><a href="#">سبزی</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-dried-fruit"></i>
-                        <span>غذهای خشک</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">نودل ها</a></li>
-                        <li><a href="#">پودر شیر</a></li>
-                        <li><a href="#">آجیل و مخمر</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-fast-food"></i>
-                        <span>فست فود</span>
-                    </a>
-                    <ul class="dropdown-list">
-						<li><a href="#">انبه</a></li>
-                         <li><a href="#">plumsor</a></li>
-                         <li><a href="#">کشمش</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-cheers"></i>
-                        <span>نوشیدنی ها</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">شراب</a></li>
-                        <li><a href="#">دوغ</a></li>
-                        <li><a href="#">نوشابه</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-beverage"></i>
-                        <span>قهوه ها</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">برزیل</a></li>
-                        <li><a href="#">اکوادور</a></li>
-                        <li><a href="#">فلیپین</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-barbecue"></i>
-                        <span>گوشت ها</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">کوفته</a></li>
-                        <li><a href="#">سوسیس</a></li>
-                        <li><a href="#">کبابی</a></li>
-                    </ul>
-                </li>
-                <li class="category-item">
-                    <a class="category-link dropdown-link" href="#">
-                        <i class="flaticon-fish"></i>
-                        <span>ماهی ها</span>
-                    </a>
-                    <ul class="dropdown-list">
-                        <li><a href="#">سبور</a></li>
-                        <li><a href="#">قزل آلا</a></li>
-                        <li><a href="#">سفید</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="category-footer">
-                <p>کلیه حقوق این قالب متعلق به <a href="#">Mrzic</a></p>
-            </div>
-        </aside>
         <!--=====================================
                 CATEGORY SIDEBAR PART END
         =======================================-->
 
+    <aside class="category-sidebar">
+        <div class="category-header">
+            <h4 class="category-title">
+                <i class="fas fa-align-left"></i>
+                <span>دسته بندی</span>
+            </h4>
+            <button class="category-close"><i class="icofont-close"></i></button>
+        </div>
 
-        <!--=====================================
+        <ul class="category-list">
+            <li class="text-center py-3">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span class="mr-2">در حال بارگذاری...</span>
+            </li>
+        </ul>
+
+        <div class="category-footer">
+            <p>کلیه حقوق این قالب متعلق به <a href="#">میثم اسکینی</a></p>
+        </div>
+    </aside>
+
+
+        <!--========    =============================
                   CART SIDEBAR PART START
         =======================================-->
          <aside class="cart-sidebar" id="cart-sidebar">
@@ -249,135 +80,7 @@
         <!--=====================================
                   NAV SIDEBAR PART START
         =======================================-->
-        <aside class="nav-sidebar">
-            <div class="nav-header">
-                <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
-                <button class="nav-close"><i class="icofont-close"></i></button>
-            </div>
-            <div class="nav-content">
-                <div class="nav-btn">
-                    <a href="login.html" class="btn btn-inline">
-                        <i class="fa fa-unlock-alt"></i>
-                        <span>به اینجا بپیوندید</span>
-                    </a>
-                </div>
-                <!-- This commentable code show when user login or register -->
-                <!-- <div class="nav-profile">
-                    <a class="nav-user" href="#"><img src="{% static 'images/user.png' %}" alt="user"></a>
-                    <h4 class="nav-name"><a href="profile.html">Miron Mahmud</a></h4>
-                </div> -->
-                <div class="nav-select-group">
-                    <div class="nav-select">
-                        <i class="icofont-world"></i>
-                        <select class="select">
-							<option value="persian" selected>فارسی</option>
-                            <option value="english">انگلیسی</option>
-                            <option value="arabic">عربی</option>
-                        </select>
-                    </div>
-                    <div class="nav-select">
-                        <i class="icofont-money"></i>
-                        <select class="select">
-                            <option value="persin" selected>ریال</option>
-                            <option value="english">دلار</option>
-                            <option value="arabic">درهم</option>
-                        </select>
-                    </div>
-                </div>
-                <ul class="nav-list">
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-home"></i>خانه</a>
-                        <ul class="dropdown-list">
-                                        <li><a href="">صفحه اصلی گرید</a></li>
-                                        <li><a href="">صفحه اصلی</a></li>
-                                        <li><a href="">صفحه اصلی کلاسیک</a></li>
-                                        <li><a href="home-standard.html">صفحه اصلی استاندارد</a></li>
-                                        <li><a href="home-category.html">صفحه اصلی دسته بندی</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-food-cart"></i>فروشگاه</a>
-                        <ul class="dropdown-list">
-                                                            <li><a href="shop-5column.html">فروشگاه 5 ستون</a></li>
-                                                            <li><a href="shop-4column.html">فروشگاه 4 ستون</a></li>
-                                                            <li><a href="shop-3column.html">فروشگاه 3 ستون</a></li>
-                                                            <li><a href="shop-2column.html">فروشگاه 2 ستون</a></li>
-                                                            <li><a href="shop-1column.html">فروشگاه 1 ستون</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-page"></i>محصولات</a>
-                        <ul class="dropdown-list">
-                                                            <li><a href="product-tab.html">محصول تک تب</a></li>
-                                                            <li><a href="product-grid.html">محصول تک ستون</a></li>
-                                                            <li><a href="product-video.html">محصول تک ویدیو</a></li>
-                                                            <li><a href="product-simple.html">معرفی محصول</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>صفحات</a>
-                        <ul class="dropdown-list">
-                                        <li><a href="faq.html">سوالات متداول</a></li>
-                                        <li><a href="offer.html">تخفیفات</a></li>
-                                        <li><a href="profile.html">پروفایل من</a></li>
-                                        <li><a href="wallet.html">کیف پول من</a></li>
-                                        <li><a href="about.html">درباره ما</a></li>
-                                        <li><a href="contact.html">ارتباط باما</a></li>
-                                        <li><a href="privacy.html">سیاست حفظ حریم خصوصی</a></li>
-                                        <li><a href="coming-soon.html">در دست ساخت</a></li>
-                                        <li><a href="blank-page.html">صفحه خالی</a></li>
-                                        <li><a href="error.html">خطای 404</a></li>
-                                        <li><a href="email-template.html">قالب ایمیل</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-lock"></i>اهراز هویت</a>
-                        <ul class="dropdown-list">
-                                        <li><a href="login.html">لاگین</a></li>
-                                        <li><a href="register.html">ثبت نام</a></li>
-                                        <li><a href="reset-password.html">حذف پسوورد</a></li>
-                                        <li><a href="change-password.html">تغییر پسوورد</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-link dropdown-link" href="#"><i class="icofont-book-alt"></i>بلاگ ها</a>
-                        <ul class="dropdown-list">
-                                        <li><a href="blog-grid.html">بلاگ گریدبندی</a></li>
-                                        <li><a href="blog-standard.html">بلاگ استاندارد</a></li>
-                                        <li><a href="blog-details.html">اطلاعات بلاگ</a></li>
-                                        <li><a href="blog-author.html">نویسنده وبلاگ</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link" href="offer.html"><i class="icofont-sale-discount"></i>تخفیفات</a></li>
-                    <li><a class="nav-link" href="about.html"><i class="icofont-info-circle"></i>درباره ما</a></li>
-                    <li><a class="nav-link" href="faq.html"><i class="icofont-support-faq"></i>سوالات متداول</a></li>
-                    <li><a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>ارتباط با ما</a></li>
-                    <li><a class="nav-link" href="privacy.html"><i class="icofont-warning"></i>سیاست حفظ حریم خصوصی</a></li>
-                    <li><a class="nav-link" href="coming-soon.html"><i class="icofont-options"></i>دردست ساخت</a></li>
-                    <li><a class="nav-link" href="error.html"><i class="icofont-ui-block"></i>خطای 404</a></li>
-                    <li><a class="nav-link" href="login.html"><i class="icofont-logout"></i>خروج</a></li>
-                </ul>
-                <div class="nav-info-group">
-                    <div class="nav-info">
-                        <i class="icofont-ui-touch-phone"></i>
-                        <p>
-                            <small>شماره تماس</small>
-                            <span>09160475782</span>
-                        </p>
-                    </div>
-                    <div class="nav-info">
-                        <i class="icofont-ui-email"></i>
-                        <p>
-                            <small>ایمیل ما</small>
-                            <span>support@greeny.com</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="nav-footer">
-					<p>کلیه حقوق این قالب متعلق به <a href="#">Mrzic</a></p>
-                </div>
-            </div>
-        </aside>
+        {% include 'base/slider-navbar.html' %}
         <!--=====================================
                   NAV SIDEBAR PART END
         =======================================-->
@@ -386,31 +89,7 @@
         <!--=====================================
                     MOBILE-MENU PART START
         =======================================-->
-        <div class="mobile-menu">
-            <a href="index.html" title="Home Page">
-                <i class="fas fa-home"></i>
-                <span>خانه</span>
-            </a>
-            <button class="cate-btn" title="Category List">
-                <i class="fas fa-list"></i>
-                <span>دسته بندی</span>
-            </button>
-            <button class="cart-btn" title="Cartlist">
-                <i class="fas fa-shopping-basket"></i>
-                <span>سبد خرید</span>
-                <sup>0+</sup>
-            </button>
-            <a href="wishlist.html" title="Wishlist">
-                <i class="fas fa-heart"></i>
-                <span>لیست علاقه مندی</span>
-                <sup>0</sup>
-            </a>
-            <a href="compare.html" title="Compare List">
-                <i class="fas fa-random"></i>
-                <span>مقایسه</span>
-                <sup>0</sup>
-            </a>
-        </div>
+         {% include 'base/meno-mobile.html' %}
         <!--=====================================
                     MOBILE-MENU PART END
         =======================================-->
@@ -489,16 +168,14 @@
                                             <li><a href="#" class="icofont-instagram" title="Instagram"></a></li>
                                         </ul>
                                     </div>
-                                          <div class="view-add-group">
-                                        <button class="product-add" data-product-id="{{ product_vip.id }}" title="افزودن به سبد خرید">
-                                            <i class="fas fa-shopping-basket"></i>
-                                            <span>افزودن به سبد خرید</span>
-                                        </button>
-                                        <div class="product-action">
-                                            <button class="action-minus" title="کم کردن"><i class="icofont-minus"></i></button>
-                                            <input class="action-input" title="تعداد مورد نیاز" type="text" name="quantity" value="1">
-                                            <button class="action-plus" title="زیاد کردن"><i class="icofont-plus"></i></button>
-                                        </div>
+                                       <div class="view-add-group">
+                                         <button class="product-add" data-product-id="{{ products.id }}"
+                                                 title="افزودن به سبد خرید">
+                                             <i class="fas fa-shopping-basket"></i>
+                                             <span>افزودن به سبد خرید</span>
+                                         </button>
+                                     </div>
+
                                     </div>
                                     <div class="view-action-group">
                                         <a class="view-wish wish" href="#" title="افزودن به لیست علاقه مندی ها">
@@ -547,9 +224,7 @@
                                         <div class="banner-sub-category">
                                         {% for category_parent in category.children.all %}
 											<ul>
-                                            {% for category_Parent in category_parent.children.all  %}
-                                                 <li><a href="{% url 'products_app:product_by_category' category_Parent.slug %}" rel="noindex">{{ category_Parent.title }}</a></li>
-                                            {% endfor %}
+                                                 <li><a href="{% url 'products_app:product_by_category' category_parent.slug %}" rel="noindex">{{ category_parent.title }}</a></li>
                                              </ul>
                                         {% endfor %}
                                         </div>
@@ -714,14 +389,11 @@
 {#                                    <del>34 ريال</del>#}
                                     <span>{{ vip_product.price }} <small>/کیلو</small></span>
                                 </h6>
-                              <button
-                                type="button"
-                                class="product-add"
-                                title="افزودن به سبد خرید">
-                                <i class="fas fa-shopping-basket"></i>
-                                <span>افزودن</span>
-                              </button>
-
+                                <div class="view-add-group">
+                                    <button class="product-add" href="{% url 'products_app:product_detail' vip_product.slug %}" >
+                                        <span>جزِییات محصول</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1295,6 +967,7 @@
 
 <script src="{% static 'js/cart_add.js' %}"></script>
 <script src="{% static 'js/cart_detail.js' %}"></script>
-
+<script src="{% static 'js/category/category.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
 
 {% endblock %}

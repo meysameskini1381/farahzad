@@ -9,6 +9,26 @@ from products_app.models import Product,Category
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from django.db.models import Q
+
+
+def get_categories_api(request):
+    """API endpoint برای دریافت دسته‌بندی‌های اصلی با فرزندان"""
+    categories = Category.objects.filter(
+        is_main=True,
+        is_active=True
+    ).prefetch_related(
+        'children'  # ← این مهمه
+    ).order_by('ordering', 'title')
+
+    serializer = CategorySerializer(categories, many=True)
+
+    return JsonResponse({
+        'status': 'success',
+        'data': serializer.data
+    }, json_dumps_params={'ensure_ascii': False})  # ← برای فارسی
 
 class ProductListAPIView(ListAPIView):
     queryset = Product.objects.filter(is_active=True)
@@ -72,3 +92,27 @@ class ProductCommentBySlugAPIView(APIView):
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+def search_products(request):
+    query = request.GET.get('q', '').strip()
+
+    if len(query) < 2:
+        return JsonResponse({
+            'results': [],
+            'message': 'حداقل 2 کاراکتر وارد کنید'
+        })
+
+    products = Product.objects.filter(
+        Q(title__icontains=query) |
+        Q(short_description__icontains=query) |
+        Q(category__title__icontains=query),
+        is_active=True
+    ).select_related('category').distinct()[:10]
+
+    serializer = ProductSearchSerializer(products, many=True, context={'request': request})
+
+    return JsonResponse({
+        'results': serializer.data,
+        'count': len(serializer.data)
+    })

@@ -1,7 +1,7 @@
 {% load static %}
-{% block titel %}   {% endblock %}
 
-{% block descripsion %}   {% endblock %}
+{% block titel %}{% endblock %}
+{% block descripsion %}{% endblock %}
 
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
@@ -22,7 +22,7 @@
         <meta name="name" content="Greeny">
         <meta name="title" content="Greeny - eCommerce HTML Template">
         <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
-        <!--=====================================
+        <!--====================================
                     META-TAG PART END
         =======================================-->
 
@@ -40,6 +40,7 @@
         <link rel="stylesheet" href="{% static 'fonts/icofont/icofont.min.css' %}">
         <link rel="stylesheet" href="{% static 'fonts/fontawesome/fontawesome.min.css' %}">
 
+
         <!-- VENDOR -->
         <link rel="stylesheet" href="{% static 'vendor/venobox/venobox.min.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/slickslider/slick.min.css' %}">
@@ -48,12 +49,12 @@
 
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'css/css-add.css.css' %}">
+        <link rel="stylesheet" href="{% static 'css/eysam.css' %}">
 
+        <link rel="stylesheet" href="{% static 'css/css-add.css' %}">
         <link rel="stylesheet" href="{% static 'css/home-standard.css' %}">
-        <link rel="stylesheet" href="{%  static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
-        <link rel="stylesheet" href="{%  static 'css/product-grid.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product-grid.css' %}">
         <!--=====================================
                     CSS LINK PART END
         =======================================-->
@@ -63,10 +64,14 @@
         <a class="backtop fas fa-arrow-up" href="#"></a>
 
         <div class="header-top alert fade show">
-            <p>20% تخفیف برای اعضای جدید <a href="register.html">همین حالا عضو شوید!</a></p>
+            {% if request.user.is_authenticated %}
+                <p>برای پیگیری سفارشات خود با شماره <strong>09902527870</strong> تماس بگیرید</p>
+            {% else %}
+                <p>برای ثبت سفارش ابتدا <a href="{% url 'account_app:auth_page' %}">ورود/ثبت نام</a>
+
+            {% endif %}
             <button data-bs-dismiss="alert"><i class="fas fa-times"></i></button>
         </div>
-
 
         <!--=====================================
                     HEADER PART START
@@ -95,10 +100,29 @@
                         </a>
                     {% endif %}
 
-                    <form class="header-form">
-                        <input type="text" placeholder="جست و جو کن ...">
-                        <button><i class="fas fa-search"></i></button>
-                    </form>
+
+
+
+                    <div class="search-wrapper">
+                        <form class="header-form" id="searchForm">
+                            <input
+                                    type="text"
+                                    placeholder="جست و جو کن ..."
+                                    id="searchInput"
+                                    autocomplete="off"
+                            >
+                            <button type="button" id="searchBtn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+
+                        <div class="search-dropdown" id="searchDropdown">
+                            <div class="search-results" id="searchResults"></div>
+                        </div>
+                    </div>
+
+
+
 
                     <div class="header-widget-group">
                         <a href="compare.html" class="header-widget" title="Compare List">
@@ -139,7 +163,6 @@
                                     <a class="navbar-link dropdown-arrow" >احراز هویت</a>
                                     <ul class="dropdown-position-list">
                                     {% if user.is_authenticated %}
-
                                         <li><a href="login.html">پنل کاربری</a></li>
                                     {% else %}
                                          <li><a href="login.html">ورود ثبت نام </a></li>
@@ -179,33 +202,40 @@
                 </div>
             </div>
         </nav>
+        <!--=====================================
+                    NAVBAR PART END
+        =======================================-->
 
+        <!--=====================================
+                MOBILE MENU PART START
+        =======================================-->
+        <!--=====================================
+                MOBILE MENU PART END
+        =======================================-->
 
+        <script>
+        if (!window.csrftoken) {
+            // اول سعی کن از meta tag بگیر (اگر از تمپلیت استفاده می‌کردی)
+            window.csrftoken =
+                document.querySelector('[name=csrfmiddlewaretoken]')?.value || "";
 
+            // اگر خالی بود، از کوکی بخوان
+            if (!window.csrftoken) {
+                const cookieValue = document.cookie
+                    .split('; ')
+                    .find(row => row.startsWith('csrftoken='))
+                    ?.split('=')[1];
+                window.csrftoken = cookieValue || "";
+            }
+        }
+        console.log("CSRF Token:", window.csrftoken);
+        </script>
 
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
 
-<script>
-if (!window.csrftoken) {
-    // اول سعی کن از meta tag بگیر (اگر از تمپلیت استفاده می‌کردی)
-    window.csrftoken =
-        document.querySelector('[name=csrfmiddlewaretoken]')?.value || "";
-
-    // اگر خالی بود، از کوکی بخوان
-    if (!window.csrftoken) {
-        const cookieValue = document.cookie
-            .split('; ')
-            .find(row => row.startsWith('csrftoken='))
-            ?.split('=')[1];
-        window.csrftoken = cookieValue || "";
-    }
-}
-console.log("CSRF Token:", window.csrftoken);
-
-</script>
-
-{% block body %}
-
-{% endblock %}
 
 
  <!--=====================================
@@ -323,10 +353,9 @@ console.log("CSRF Token:", window.csrftoken);
         <script src="{% static 'js/countdown.js' %}"></script>
         <script src="{% static 'js/accordion.js' %}"></script>
         <script src="{% static 'js/venobox.js' %}"></script>
+        <script src="{% static 'js/search.js' %}"></script>
         <script src="{% static 'js/slick.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
         <!--=====================================
                     JS LINK PART END
         =======================================-->
-    </body>
-</html>

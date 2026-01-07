@@ -37,3 +37,14 @@ class HomeView(TemplateView):
             )
 
         return context
+
+
+
+
+
+
+
+
+
+
+

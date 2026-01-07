@@ -1,13 +1,14 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block titel %} {% endblock %}
+
+{% block titel %}  {% endblock %}
 {% block descripsion %}   {% endblock %}
 
 
 
 {% block body %}
-<br> <br> <br>
+<br>
 
 <style>
 .reply-to {
@@ -35,15 +36,66 @@
                     MOBILE-MENU PART END
         =======================================-->
 
-
+        {% include 'base/slider-navbar.html' %}
         <!--=====================================
                     PRODUCT VIEW START
         =======================================-->
-
         <!--=====================================
                     PRODUCT VIEW END
         =======================================-->
+        <aside class="cart-sidebar" id="cart-sidebar" >
+            <div class="cart-header">
+                <div class="cart-total">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>کل مورد (<span id="cart-count">0</span>)</span>
+                </div>
+                <button class="cart-close"><i class="icofont-close"></i></button>
+            </div>
+            <ul class="cart-list" id="cart-list">
+                <!-- آیتم‌ها به‌صورت دینامیک بارگذاری می‌شن -->
+            </ul>
+            <div class="cart-footer">
+                <button class="coupon-btn">آیا کد تخفیف دارید؟</button>
+                <form class="coupon-form">
+                    <input type="text" placeholder="کد تخفیف خود را وارد کنید">
+                    <button type="submit"><span>ثبت</span></button>
+                </form>
+                <a class="cart-checkout-btn" href="/checkout/" id="checkout-btn">
+                    <span class="checkout-label">برو به تسویه حساب</span>
+                    <span class="checkout-price" id="checkout-price">0 ریال</span>
+                </a>
+            </div>
+        </aside>
 
+
+
+
+
+
+
+
+
+
+           <aside class="category-sidebar">
+        <div class="category-header">
+            <h4 class="category-title">
+                <i class="fas fa-align-left"></i>
+                <span>دسته بندی</span>
+            </h4>
+            <button class="category-close"><i class="icofont-close"></i></button>
+        </div>
+
+        <ul class="category-list">
+            <li class="text-center py-3">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span class="mr-2">در حال بارگذاری...</span>
+            </li>
+        </ul>
+
+        <div class="category-footer">
+            <p>کلیه حقوق این قالب متعلق به <a href="#">میثم اسکینی</a></p>
+        </div>
+    </aside>
 
 
         <!--=====================================
@@ -52,7 +104,7 @@
                     BANNER PART END
         =======================================-->
 
-
+        {% include 'base/meno-mobile.html' %}
         <!--=====================================
                 PRODUCT DETAILS PART START
         =======================================-->
@@ -85,6 +137,7 @@
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-lg-6">
                         <div class="product-grid">
                             <img src="{% static 'images/product/01.jpg' %}" alt="product">
@@ -101,10 +154,16 @@
                                     <a href="#">${product.title}</a>
                                 </h3>
 
-                                <div class="details-meta">
-                                    <p>کد محصول:<span>${product.id}</span></p>
-                                    <p>برند:<a href="#">ردهامی</a></p>
-                                </div>
+                               <div class="details-meta">
+                                <p>کد محصول: <span class="product-id"></span></p>
+
+                                <p class="product-weight">
+                                    وزن محصول:
+                                    <span class="product-weight-value"></span>
+                                </p>
+
+                                <p>برند:<a href="#">فرحزاد</a></p>
+                            </div>
 
                                 <div class="details-rating">
                                     <i class="active icofont-star"></i>
@@ -143,31 +202,14 @@
                                         <li><a href="#" class="icofont-instagram" title="Instagram"></a></li>
                                     </ul>
                                 </div>
+                                  <div class="view-add-group">
+                                        <button class="product-add" title="افزودن به سبد خرید">
+                                            <i class="fas fa-shopping-basket"></i>
+                                            <span>افزودن به سبد خرید</span>
+                                        </button>
+                                    </div>
 
-            <div class="details-add-group">
-                <button class="product-add" title="افزودن به سبد خرید">
-                    <i class="fas fa-shopping-basket"></i>
-                    <span>افزودن به سبد خرید</span>
-                </button>
-
-                <div class="product-action">
-                    <button class="action-minus" title="کم کردن">
-                        <i class="icofont-minus"></i>
-                    </button>
-
-                    <input class="action-input"
-                           type="text"
-                           name="quantity"
-                           value="1"
-                           title="تعداد مورد نیاز">
-
-                    <button class="action-plus" title="زیاد کردن">
-                        <i class="icofont-plus"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="details-action-group">
+          <div class="details-action-group">
                 <a class="view-wish wish" href="#" title="افزودن به لیست علاقه مندی ها">
                     <i class="icofont-heart"></i>
                     <span>افزودن به علاقه مندی</span>
@@ -188,31 +230,6 @@
         <!--=====================================
                 PRODUCT DETAILS PART END
         =======================================-->
-         <aside class="cart-sidebar" id="cart-sidebar">
-    <div class="cart-header">
-        <div class="cart-total">
-            <i class="fas fa-shopping-basket"></i>
-            <span>کل مورد (<span id="cart-count">0</span>)</span>
-        </div>
-        <button class="cart-close"><i class="icofont-close"></i></button>
-    </div>
-    <ul class="cart-list" id="cart-list">
-        <!-- آیتم‌ها به‌صورت دینامیک بارگذاری می‌شن -->
-    </ul>
-    <div class="cart-footer">
-        <button class="coupon-btn">آیا کد تخفیف دارید؟</button>
-        <form class="coupon-form">
-            <input type="text" placeholder="کد تخفیف خود را وارد کنید">
-            <button type="submit"><span>ثبت</span></button>
-        </form>
-        <a class="cart-checkout-btn" href="checkout.html">
-            <span class="checkout-label">برو به تسویه حساب</span>
-            <span class="checkout-price" id="checkout-price">0 ریال</span>
-        </a>
-    </div>
-</aside>
-
-
         <!--=====================================
                   PRODUCT TAB PART START
         =======================================-->
@@ -339,81 +356,16 @@
     </div>
 </div>
 
-<!-- =======================
-     ADD COMMENT FORM
-======================== -->
-
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!--=====================================
-                    PRODUCT TAB PART END
-        =======================================-->
-
-
-        <!--=====================================
-                 PRODUCT RELATED PART START
-        =======================================-->
-
-        <!--=====================================
-                 PRODUCT RELATED PART END
-        =======================================-->
-
-
-
-        <!--=====================================
-                    NEWSLETTER PART START
-        =======================================-->
-
-        <!--=====================================
-                    NEWSLETTER PART END
-        =======================================-->
-
-
-        <!--=====================================
-                    INTRO PART START
-
-                    INTRO PART END
-        =======================================-->
-
-
-        <!--=====================================
-                     FOOTER PART START
-        =======================================-->
-
-        <!--=====================================
-                      FOOTER PART END
-        =======================================-->
-
-
-        <!--=====================================
-                    JS LINK PART START
-        =======================================-->
-
-
-
+<script src="{% static 'js/cart_add.js' %}"></script>
 <script src="{% static 'js/product-detail.js' %}"></script>
+
 <script src="{% static 'js/omment-product.js' %}"></script>
 <script src="{% static 'js/cart_detail.js' %}"></script>
+
+<script src="{% static 'js/category/category.js' %}"></script>
 
 
 {% endblock %}

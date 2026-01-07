@@ -47,7 +47,7 @@ class AddToCartAPIView(APIView):
             item.quantity += quantity
             item.save()
 
-        serializer = CartSerializer(cart)
+        serializer = CartSerializer(cart, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -67,7 +67,8 @@ class UpdateCartItemAPIView(APIView):
         item.quantity = quantity
         item.save()
 
-        return Response(CartSerializer(cart).data)
+        serializer = CartSerializer(cart, context={'request': request})
+        return Response(serializer.data)
 
 
 class DeleteCartItemAPIView(APIView):
@@ -78,7 +79,9 @@ class DeleteCartItemAPIView(APIView):
         cart = get_object_or_404(Cart, user=request.user)
         item = get_object_or_404(CartItem, id=item_id, cart=cart)
         item.delete()
-        return Response({"detail": "deleted"})
+
+        serializer = CartSerializer(cart, context={'request': request})
+        return Response(serializer.data)
 
 
 class GetCartAPIView(APIView):
@@ -87,4 +90,5 @@ class GetCartAPIView(APIView):
 
     def get(self, request):
         cart, _ = Cart.objects.get_or_create(user=request.user)
-        return Response(CartSerializer(cart).data)
+        serializer = CartSerializer(cart, context={'request': request})
+        return Response(serializer.data)

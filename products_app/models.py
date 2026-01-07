@@ -29,7 +29,14 @@ class Category(models.Model):
         verbose_name="دسته‌بندی والد",
         help_text="اگر این دسته‌بندی زیرمجموعه است، دسته‌بندی والد را انتخاب کنید"
     )
-
+    icon = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        default='flaticon-vegetable',
+        verbose_name="آیکون",
+        help_text="نام کلاس آیکون، مثل: flaticon-vegetable"
+    )
     is_main = models.BooleanField(
         default=False,
         verbose_name="دسته‌بندی اصلی",
@@ -87,6 +94,15 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+
+        # فیلدهای موجود
+
+    def save_perent(self, *args, **kwargs):
+            # اگه parent داره، نمی‌تونه is_main باشه
+            if self.parent:
+                self.is_main = False
+
+            super().save(*args, **kwargs)
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title, allow_unicode=True)
@@ -103,7 +119,22 @@ class Product(models.Model):
     )
     vip = models.BooleanField(default=False,verbose_name='محصول vip',help_text='این بخش برای مشخص کردن محصولات vip میباشد ')
     is_featured = models.BooleanField(default=False,verbose_name='محصول ویژه است ؟ ',help_text='اگر محصول شما ویژه است تیک بزنید ')
+    weight = models.DecimalField(
+        verbose_name='وزن',
+        max_digits=6,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        help_text='وزن محصول (بر حسب گرم یا کیلوگرم)'
+    )
 
+    category_type = models.CharField(
+        verbose_name='نوع دسته‌بندی',
+        max_length=100,
+        null=True,
+        blank=True,
+        help_text='نوع یا گروه‌بندی محصول'
+    )
     title = models.CharField(
         max_length=250,
         verbose_name="نام محصول",

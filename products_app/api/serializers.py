@@ -7,6 +7,7 @@ from rest_framework.pagination import PageNumberPagination
 # =========================
 class CategorySerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
+    icon = serializers.CharField(default='flaticon-vegetable')
 
     class Meta:
         model = Category
@@ -14,6 +15,7 @@ class CategorySerializer(serializers.ModelSerializer):
             'id',
             'title',
             'slug',
+            'icon',
             'parent',
             'is_main',
             'children',
@@ -21,12 +23,9 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def get_children(self, obj):
         children = obj.children.filter(is_active=True)
-        return CategorySerializer(children, many=True).data
-
-
-
-
-
+        if children.exists():
+            return CategorySerializer(children, many=True).data
+        return []
 # =========================
 # Product List / Create
 # =========================
@@ -48,6 +47,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'discount_price',
             'stock',
             'vip',
+            'weight',
             'is_featured',
             'image',
             'short_description',
@@ -163,6 +163,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'price',
             'discount_price',
             'description',
+            'weight',
             'gallery',
             'features',
             'comments',
@@ -185,3 +186,26 @@ class ProductPagination(PageNumberPagination):
     page_size = 15
     page_size_query_param = "page_size"
     max_page_size = 100
+
+
+class ProductSearchSerializer(serializers.ModelSerializer):
+    final_price = serializers.SerializerMethodField()
+    detail_url = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'slug', 'image', 'price', 'discount_price', 'final_price', 'is_available',
+                  'detail_url']
+
+    def get_final_price(self, obj):
+        return obj.discount_price if obj.discount_price else obj.price
+
+    def get_detail_url(self, obj):
+        return f'/product/product-detail/{obj.slug}/'
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        return None

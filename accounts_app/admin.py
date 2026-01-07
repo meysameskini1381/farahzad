@@ -67,3 +67,101 @@ class AddressAdmin(admin.ModelAdmin):
 @admin.register(OTP)
 class OTPAdmin(admin.ModelAdmin):
     list_display = ['code','phone']
+
+
+@admin.register(ContactUs)
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'email', 'subject', 'is_read', 'created_at']
+    list_filter = ['is_read', 'created_at']
+    search_fields = ['full_name', 'email', 'subject', 'message']
+    readonly_fields = ['created_at', 'updated_at']
+    list_editable = ['is_read']
+    date_hierarchy = 'created_at'
+
+    fieldsets = (
+        ('اطلاعات فرستنده', {
+            'fields': ('full_name', 'email', 'phone')
+        }),
+        ('محتوای پیام', {
+            'fields': ('subject', 'message')
+        }),
+        ('وضعیت', {
+            'fields': ('is_read',)
+        }),
+        ('تاریخ و زمان', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'is_active', 'updated_at']
+    list_filter = ['is_active', 'created_at']
+    search_fields = ['title', 'short_description']
+    readonly_fields = ['created_at', 'updated_at']
+
+    fieldsets = (
+        ('عنوان و توضیحات', {
+            'fields': ('title', 'short_description', 'full_description')
+        }),
+        ('ماموریت و چشم‌انداز', {
+            'fields': ('mission', 'vision'),
+            'classes': ('collapse',)
+        }),
+        ('تصویر', {
+            'fields': ('image',)
+        }),
+        ('اطلاعات تماس', {
+            'fields': ('address', 'phone', 'email', 'working_hours')
+        }),
+        ('تنظیمات', {
+            'fields': ('is_active',)
+        }),
+        ('تاریخ و زمان', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ['question', 'category', 'order', 'is_active', 'created_at']
+    list_filter = ['category', 'is_active', 'created_at']
+    search_fields = ['question', 'answer']
+    list_editable = ['order', 'is_active']
+    readonly_fields = ['created_at', 'updated_at']
+
+    fieldsets = (
+        ('سوال و پاسخ', {
+            'fields': ('question', 'answer')
+        }),
+        ('دسته‌بندی و ترتیب', {
+            'fields': ('category', 'order')
+        }),
+        ('وضعیت', {
+            'fields': ('is_active',)
+        }),
+        ('تاریخ و زمان', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+
+@admin.register(SocialMedia)
+class SocialMediaAdmin(admin.ModelAdmin):
+    list_display = ['name', 'url', 'order', 'is_active']
+    list_filter = ['name', 'is_active']
+    list_editable = ['order', 'is_active']
+
+    fieldsets = (
+        ('اطلاعات شبکه', {
+            'fields': ('name', 'url', 'icon_class')
+        }),
+        ('تنظیمات', {
+            'fields': ('order', 'is_active')
+        }),
+    )

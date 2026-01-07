@@ -1,0 +1,169 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block titel %}
+
+{% endblock %}
+
+
+{% block descripsion %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    {% include 'base/slider-navbar.html' %}
+
+
+    {% include 'base/meno-mobile.html' %}
+    <!--=====================================
+                BANNER PART START
+    =======================================-->
+    <section class="inner-section single-banner"
+             style="background: url({% static 'iamges/single-banner.jpg;' %}) no-repeat center;"><div class=" container">
+    <h2>ارتباط با ما</h2>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ارتباط با ما</li>
+    </ol>
+    </div>
+    </section>
+    <!--=====================================
+                BANNER PART END
+    =======================================-->
+    <aside class="cart-sidebar" id="cart-sidebar" >
+            <div class="cart-header">
+                <div class="cart-total">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>کل مورد (<span id="cart-count">0</span>)</span>
+                </div>
+                <button class="cart-close"><i class="icofont-close"></i></button>
+            </div>
+            <ul class="cart-list" id="cart-list">
+                <!-- آیتم‌ها به‌صورت دینامیک بارگذاری می‌شن -->
+            </ul>
+            <div class="cart-footer">
+                <button class="coupon-btn">آیا کد تخفیف دارید؟</button>
+                <form class="coupon-form">
+                    <input type="text" placeholder="کد تخفیف خود را وارد کنید">
+                    <button type="submit"><span>ثبت</span></button>
+                </form>
+                <a class="cart-checkout-btn" href="/checkout/" id="checkout-btn">
+                    <span class="checkout-label">برو به تسویه حساب</span>
+                    <span class="checkout-price" id="checkout-price">0 ریال</span>
+                </a>
+            </div>
+        </aside>
+
+
+    <aside class="category-sidebar">
+        <div class="category-header">
+            <h4 class="category-title">
+                <i class="fas fa-align-left"></i>
+                <span>دسته بندی</span>
+            </h4>
+            <button class="category-close"><i class="icofont-close"></i></button>
+        </div>
+
+        <ul class="category-list">
+            <li class="text-center py-3">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span class="mr-2">در حال بارگذاری...</span>
+            </li>
+        </ul>
+
+        <div class="category-footer">
+            <p>کلیه حقوق این قالب متعلق به <a href="#">میثم اسکینی</a></p>
+        </div>
+    </aside>
+    <!--=====================================
+                CONTACT PART START
+    =======================================-->
+    <section class="inner-section contact-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact-card">
+                        <i class="icofont-location-pin"></i>
+                        <h4>ادرس مغازه</h4>
+                        <p>{{ about_info.address }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact-card active">
+                        <i class="icofont-phone"></i>
+                        <h4>شماره تماس</h4>
+                        <p>
+                            <a href="#" style="direction:ltr">  {{ about_info.phone }} <span>تماس</span></a>
+                             <a href="#" style="direction:ltr">09160475782<span>بخش فنی سایت </span></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact-card">
+                        <i class="icofont-email"></i>
+                        <h4>ایمیل</h4>
+                        <p>
+                            <a href="#">{{ about_info.email }}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.3406974350205!2d90.48469931445422!3d23.663771197998262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b0d5983f048d%3A0x754f30c82bcad3cd!2sJalkuri%20Bus%20Stop!5e0!3m2!1sen!2sbd!4v1605354966349!5m2!1sen!2sbd"
+                                aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form class="contact-form">
+                        <h4>افکار خود را رها کنید</h4>
+                        <div class="form-group">
+                            <div class="form-input-group">
+                                <input class="form-control" type="text" placeholder="نام شما">
+                                <i class="icofont-user-alt-3"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-group">
+                                <input class="form-control" type="text" placeholder="ایمیل شما">
+                                <i class="icofont-email"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-group">
+                                <input class="form-control" type="text" placeholder="موضوغ">
+                                <i class="icofont-book-mark"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-input-group">
+                                <textarea class="form-control" placeholder="پیام شما"></textarea>
+                                <i class="icofont-paragraph"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="form-btn-group">
+                            <i class="fas fa-envelope"></i>
+                            <span>ارسال پیام</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!--=====================================
+                CONTACT PART END
+    =======================================-->
+
+
+    <!--=====================================
+                NEWSLETTER PART START
+    =======================================-->
+<script src="{% static 'js/cart_detail.js' %}"></script>
+
+<script src="{% static 'js/category/category.js' %}"></script>
+
+{% endblock %}

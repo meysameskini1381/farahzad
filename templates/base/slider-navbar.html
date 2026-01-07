@@ -1,0 +1,123 @@
+<aside class="nav-sidebar">
+    {% load static %}
+    <div class="nav-header">
+        <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+        <button class="nav-close"><i class="icofont-close"></i></button>
+    </div>
+    <div class="nav-content">
+{#        <div class="nav-btn">#}
+{#            <a href="login.html" class="btn btn-inline">#}
+{#                <i class="fa fa-unlock-alt"></i>#}
+{#                <span>به اینجا بپیوندید</span>#}
+{#            </a>#}
+{#        </div>#}
+        <!-- This commentable code show when user login or register -->
+        <!-- <div class="nav-profile">
+                    <a class="nav-user" href="#"><img src="{% static 'images/user.png' %}" alt="user"></a>
+                    <h4 class="nav-name"><a href="profile.html">Miron Mahmud</a></h4>
+                </div> -->
+        <div class="nav-select-group">
+            <div class="nav-select">
+                <i class="icofont-world"></i>
+                <select class="select">
+                    <option value="persian" selected>فارسی</option>
+                    <option value="english">انگلیسی</option>
+                    <option value="arabic">عربی</option>
+                </select>
+            </div>
+            <div class="nav-select">
+                <i class="icofont-money"></i>
+                <select class="select">
+                    <option value="persin" selected>ریال</option>
+                    <option value="english">دلار</option>
+                    <option value="arabic">درهم</option>
+                </select>
+            </div>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <a class="nav-link dropdown-link" href="{% url 'home_app:home' %}"><i class="icofont-home"></i>خانه</a>
+            </li>
+{#            <li>#}
+{#                <a class="nav-link dropdown-link" href="#"><i class="icofont-food-cart"></i>فروشگاه</a>#}
+{#                <ul class="dropdown-list">#}
+{#                    <li><a href="shop-5column.html">فروشگاه 5 ستون</a></li>#}
+{#                    <li><a href="shop-4column.html">فروشگاه 4 ستون</a></li>#}
+{#                    <li><a href="shop-3column.html">فروشگاه 3 ستون</a></li>#}
+{#                    <li><a href="shop-2column.html">فروشگاه 2 ستون</a></li>#}
+{#                    <li><a href="shop-1column.html">فروشگاه 1 ستون</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="nav-link dropdown-link" href="#"><i class="icofont-page"></i></a>#}
+{#                <ul class="dropdown-list">#}
+{#                    <li><a href="product-tab.html">محصول تک تب</a></li>#}
+{#                    <li><a href="product-grid.html">محصول تک ستون</a></li>#}
+{#                    <li><a href="product-video.html">محصول تک ویدیو</a></li>#}
+{#                    <li><a href="product-simple.html">معرفی محصول</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="nav-link dropdown-link" href="#"><i class="icofont-bag-alt"></i>صفحات</a>#}
+{#                <ul class="dropdown-list">#}
+{#                    <li><a href="faq.html">سوالات متداول</a></li>#}
+{#                    <li><a href="offer.html">تخفیفات</a></li>#}
+{#                    <li><a href="profile.html">پروفایل من</a></li>#}
+{#                    <li><a href="wallet.html">کیف پول من</a></li>#}
+{#                    <li><a href="about.html">درباره ما</a></li>#}
+{#                    <li><a href="AboutUs.html">ارتباط باما</a></li>#}
+{#                    <li><a href="privacy.html">سیاست حفظ حریم خصوصی</a></li>#}
+{#                    <li><a href="coming-soon.html">در دست ساخت</a></li>#}
+{#                    <li><a href="blank-page.html">صفحه خالی</a></li>#}
+{#                    <li><a href="error.html">خطای 404</a></li>#}
+{#                    <li><a href="email-template.html">قالب ایمیل</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="nav-link dropdown-link" href="#"><i class="icofont-lock"></i>اهراز هویت</a>#}
+{#                <ul class="dropdown-list">#}
+{#                    <li><a href="login.html">لاگین</a></li>#}
+{#                    <li><a href="register.html">ثبت نام</a></li>#}
+{#                    <li><a href="reset-password.html">حذف پسوورد</a></li>#}
+{#                    <li><a href="change-password.html">تغییر پسوورد</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="nav-link dropdown-link" href="#"><i class="icofont-book-alt"></i>بلاگ ها</a>#}
+{#                <ul class="dropdown-list">#}
+{#                    <li><a href="blog-grid.html">بلاگ گریدبندی</a></li>#}
+{#                    <li><a href="blog-standard.html">بلاگ استاندارد</a></li>#}
+{#                    <li><a href="blog-details.html">اطلاعات بلاگ</a></li>#}
+{#                    <li><a href="blog-author.html">نویسنده وبلاگ</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+            <li><a class="nav-link" href=""><i class="icofont-sale-discount"></i>تخفیفات</a></li>
+            <li><a class="nav-link" href=""><i class="icofont-info-circle"></i>درباره ما</a></li>
+            <li><a class="nav-link" href=""><i class="icofont-support-faq"></i>سوالات متداول</a></li>
+            <li><a class="nav-link" href="{% url 'accounts_app:about_us' %}"><i class="icofont-contacts"></i>ارتباط با ما</a></li>
+            <li><a class="nav-link" href=""><i class="icofont-warning"></i>سیاست حفظ حریم خصوصی</a></li>
+            <li><a class="nav-link" href=""><i class="icofont-options"></i>دردست ساخت</a></li>
+            <li><a class="nav-link" href=""><i class="icofont-ui-block"></i>خطای 404</a></li>
+            <li><a class="nav-link" href=""><i class="icofont-logout"></i>خروج</a></li>
+        </ul>
+        <div class="nav-info-group">
+            <div class="nav-info">
+                <i class="icofont-ui-touch-phone"></i>
+                <p>
+                    <small>شماره تماس</small>
+                    <span>09160475782</span>
+                </p>
+            </div>
+            <div class="nav-info">
+                <i class="icofont-ui-email"></i>
+                <p>
+                    <small>ایمیل ما</small>
+                    <span>support@greeny.com</span>
+                </p>
+            </div>
+        </div>
+        <div class="nav-footer">
+            <p>کلیه حقوق این قالب متعلق به <a href="#">تیم میثم اسکینی</a></p>
+        </div>
+    </div>
+</aside>
