@@ -1,0 +1,248 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}لیست سفارشات{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">
+                    <i class="fas fa-shopping-bag text-primary"></i>
+                    سفارشات من
+                </h2>
+                <span class="badge bg-primary rounded-pill px-3 py-2">
+                    {{ paginator.count }} سفارش
+                </span>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <form method="get" class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label for="status-filter" class="form-label fw-bold">
+                                <i class="fas fa-filter"></i> وضعیت سفارش
+                            </label>
+                            <select name="status" id="status-filter" class="form-select">
+                                <option value="">همه وضعیت‌ها</option>
+                                {% for status_code, status_display in status_choices %}
+                                    <option value="{{ status_code }}" {% if status_filter == status_code %}selected{% endif %}>
+                                        {{ status_display }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="page-size-select" class="form-label fw-bold">
+                                <i class="fas fa-list"></i> تعداد نمایش
+                            </label>
+                            <select name="page_size" id="page-size-select" class="form-select">
+                                {% for size in page_size_options %}
+                                    <option value="{{ size }}" {% if page_size == size %}selected{% endif %}>
+                                        {{ size }} مورد
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary flex-fill">
+                                    <i class="fas fa-search"></i> اعمال فیلتر
+                                </button>
+                                <a href="{% url 'orders:orders_list_user' %}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-redo"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {% if orders %}
+                <div class="card shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                    <tr>
+                                        <th scope="col" class="fw-bold py-3 px-4" style="color: #212529; font-size: 15px;">
+                                            <i class="fas fa-hashtag text-primary me-1"></i>
+                                            شماره سفارش
+                                        </th>
+                                        <th scope="col" class="fw-bold py-3 px-4" style="color: #212529; font-size: 15px;">
+                                            <i class="far fa-calendar-alt text-primary me-1"></i>
+                                            تاریخ ثبت
+                                        </th>
+                                        <th scope="col" class="fw-bold py-3 px-4" style="color: #212529; font-size: 15px;">
+                                            <i class="fas fa-boxes text-primary me-1"></i>
+                                            تعداد محصول
+                                        </th>
+                                        <th scope="col" class="fw-bold py-3 px-4" style="color: #212529; font-size: 15px;">
+                                            <i class="fas fa-money-bill-wave text-primary me-1"></i>
+                                            مبلغ کل
+                                        </th>
+                                        <th scope="col" class="fw-bold py-3 px-4" style="color: #212529; font-size: 15px;">
+                                            <i class="fas fa-info-circle text-primary me-1"></i>
+                                            وضعیت
+                                        </th>
+                                        <th scope="col" class="fw-bold text-center py-3 px-4" style="color: #212529; font-size: 15px;">
+                                            <i class="fas fa-cogs text-primary me-1"></i>
+                                            عملیات
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                        <tr style="border-bottom: 1px solid #e9ecef;">
+                                            <th scope="row" class="text-primary fw-bold py-3 px-4" style="font-size: 14px;">
+                                                #{{ order.order_number }}
+                                            </th>
+                                            <td class="py-3 px-4" style="font-size: 14px; color: #495057;">
+                                                <i class="far fa-calendar-alt text-muted me-1"></i>
+                                                {{ order.created_at|to_jalali }}
+                                            </td>
+                                            <td class="py-3 px-4">
+                                                <span class="badge bg-light text-dark" style="font-size: 13px; padding: 6px 12px;">
+                                                    {{ order.total_items }} محصول
+                                                </span>
+                                            </td>
+                                            <td class="fw-bold py-3 px-4" style="font-size: 14px; color: #212529;">
+                                                {{ order.total_amount|floatformat:0|intcomma }} ریال
+                                            </td>
+                                            <td class="py-3 px-4">
+                                                {% if order.status == 'pending' %}
+                                                    <span class="badge bg-warning text-dark" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-clock"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% elif order.status == 'paid' %}
+                                                    <span class="badge bg-success" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-check"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% elif order.status == 'processing' %}
+                                                    <span class="badge bg-info" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-cog"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% elif order.status == 'shipping' %}
+                                                    <span class="badge bg-primary" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-truck"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% elif order.status == 'delivered' %}
+                                                    <span class="badge bg-success" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-box-open"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% elif order.status == 'cancelled' %}
+                                                    <span class="badge bg-danger" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-times"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% elif order.status == 'returned' %}
+                                                    <span class="badge bg-dark" style="font-size: 13px; padding: 6px 12px;">
+                                                        <i class="fas fa-undo"></i> {{ order.get_status_display }}
+                                                    </span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center py-3 px-4">
+                                                <a href=""
+                                                   class="btn btn-sm btn-outline-primary"
+                                                   style="padding: 6px 16px; font-size: 13px;">
+                                                    <i class="fas fa-eye"></i> مشاهده
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                {% if paginator.num_pages > 1 %}
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <div class="text-muted" style="font-size: 14px;">
+                            نمایش {{ orders.start_index }} تا {{ orders.end_index }} از {{ paginator.count }} سفارش
+                        </div>
+
+                        <nav aria-label="صفحه‌بندی">
+                            <ul class="pagination mb-0">
+                                {% if orders.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ orders.previous_page_number }}&page_size={{ page_size }}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link"><i class="fas fa-chevron-right"></i></span>
+                                    </li>
+                                {% endif %}
+
+                                {% for page in page_range %}
+                                    {% if page == '...' %}
+                                        <li class="page-item disabled">
+                                            <span class="page-link">...</span>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item {% if page == orders.number %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ page }}&page_size={{ page_size }}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                                {{ page }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if orders.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ orders.next_page_number }}&page_size={{ page_size }}{% if status_filter %}&status={{ status_filter }}{% endif %}">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link"><i class="fas fa-chevron-left"></i></span>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                <div class="card shadow-sm">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                        <h5 class="text-muted">هیچ سفارشی یافت نشد</h5>
+                        <p class="text-muted">شما هنوز هیچ سفارشی ثبت نکرده‌اید</p>
+                        <a href="{% url 'products:products_list' %}" class="btn btn-primary mt-3">
+                            <i class="fas fa-shopping-cart"></i> شروع خرید
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+    <section class="news-part" style="background: url({% static 'images/newsletter.jpg' %}) no-repeat center;">
+            <div class="container">
+                <div class="row align-مورد-center">
+                    <div class="col-md-5 col-lg-6 col-xl-7">
+                        <div class="news-text">
+                            <h2> با ثبت نام در فرحزاد خرید خود را نهایی کنید </h2>
+                            <p>فرحزاد  خرید باور نکردنی میوه های چهار فصل</p>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-6 col-xl-5">
+                        <form class="news-form">
+                            <input type="text" placeholder="آدرس ایمیل خود را وارد کنید">
+                            <button><span><i class="icofont-ui-email"></i>عضویت</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
